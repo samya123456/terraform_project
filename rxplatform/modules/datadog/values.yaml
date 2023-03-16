@@ -1,0 +1,18 @@
+targetSystem: "linux"
+datadog:
+  processAgent:
+    enabled: true
+    processCollection: true
+  logs:
+    enabled: true
+    containerCollectAll: true
+  securityAgent:
+    runtime:
+      enabled: true
+    compliance:
+      enabled: true
+  networkMonitoring:
+    enabled: true
+  clusterName: ${cluster_name}
+  tags:
+    - "environment:${environment}"

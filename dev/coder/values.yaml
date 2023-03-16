@@ -1,0 +1,9 @@
+ingress:
+  enable: true
+  host: ${host}
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    ingress.gcp.kubernetes.io/pre-shared-cert : ${certs}
+    kubernetes.io/ingress.global-static-ip-name : ${ip_name}
+  tls:
+    enable: true

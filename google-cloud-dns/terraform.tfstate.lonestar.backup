@@ -1,0 +1,3415 @@
+{
+  "version": 4,
+  "terraform_version": "1.0.9",
+  "serial": 134,
+  "lineage": "9e5cb467-06e8-5f1e-d326-f22b44e5e181",
+  "outputs": {},
+  "resources": [
+    {
+      "module": "module.records",
+      "mode": "data",
+      "type": "google_compute_network",
+      "name": "default",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "description": "Default network for the project",
+            "gateway_ipv4": "",
+            "id": "projects/eastern-art-339418/global/networks/default",
+            "name": "default",
+            "project": null,
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/networks/default",
+            "subnetworks_self_links": [
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/southamerica-east1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-south2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-southeast2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/europe-west1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/australia-southeast2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/europe-west6/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-central1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-west2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-east1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/europe-west4/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-northeast3/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-west3/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/southamerica-west1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/europe-west2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-southeast1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/europe-north1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/europe-central2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/northamerica-northeast2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-east4/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-east2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-south1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-northeast2/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/australia-southeast1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-west4/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/northamerica-northeast1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/europe-west3/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-east7/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-west1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-northeast1/subnetworks/default",
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/asia-east1/subnetworks/default"
+            ]
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_compute_address",
+      "name": "mail_ip",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": "34.68.41.163",
+            "address_type": "EXTERNAL",
+            "creation_timestamp": "2022-01-28T11:03:21.565-08:00",
+            "description": "",
+            "id": "projects/eastern-art-339418/regions/us-central1/addresses/mail-server-ip",
+            "name": "mail-server-ip",
+            "network": "",
+            "network_tier": "PREMIUM",
+            "prefix_length": 0,
+            "project": "eastern-art-339418",
+            "purpose": "",
+            "region": "us-central1",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-central1/addresses/mail-server-ip",
+            "subnetwork": "",
+            "timeouts": null,
+            "users": [
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/zones/us-central1-a/instances/compliance-mail"
+            ]
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_compute_address",
+      "name": "web_ip",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": "35.239.241.143",
+            "address_type": "EXTERNAL",
+            "creation_timestamp": "2022-01-28T11:03:22.497-08:00",
+            "description": "",
+            "id": "projects/eastern-art-339418/regions/us-central1/addresses/web-server-ip",
+            "name": "web-server-ip",
+            "network": "",
+            "network_tier": "PREMIUM",
+            "prefix_length": 0,
+            "project": "eastern-art-339418",
+            "purpose": "",
+            "region": "us-central1",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-central1/addresses/web-server-ip",
+            "subnetwork": "",
+            "timeouts": null,
+            "users": [
+              "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/zones/us-central1-a/instances/web-forwarding"
+            ]
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_compute_firewall",
+      "name": "compliance_mail_rules",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "allow": [
+              {
+                "ports": [
+                  "25",
+                  "2525",
+                  "465",
+                  "587"
+                ],
+                "protocol": "tcp"
+              }
+            ],
+            "creation_timestamp": "2022-01-28T11:03:20.687-08:00",
+            "deny": [],
+            "description": "",
+            "destination_ranges": [],
+            "direction": "INGRESS",
+            "disabled": false,
+            "enable_logging": null,
+            "id": "projects/eastern-art-339418/global/firewalls/compliance-mail-fw-rules",
+            "log_config": [],
+            "name": "compliance-mail-fw-rules",
+            "network": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/networks/default",
+            "priority": 1000,
+            "project": "eastern-art-339418",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/firewalls/compliance-mail-fw-rules",
+            "source_ranges": [],
+            "source_service_accounts": [],
+            "source_tags": [
+              "compliance"
+            ],
+            "target_service_accounts": [],
+            "target_tags": [],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.records.data.google_compute_network.default"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_compute_firewall",
+      "name": "haproxy-web-rules",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "allow": [
+              {
+                "ports": [
+                  "80",
+                  "443"
+                ],
+                "protocol": "tcp"
+              }
+            ],
+            "creation_timestamp": "2022-01-28T11:03:20.612-08:00",
+            "deny": [],
+            "description": "",
+            "destination_ranges": [],
+            "direction": "INGRESS",
+            "disabled": false,
+            "enable_logging": null,
+            "id": "projects/eastern-art-339418/global/firewalls/haproxy-web-fw-rules",
+            "log_config": [],
+            "name": "haproxy-web-fw-rules",
+            "network": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/networks/default",
+            "priority": 1000,
+            "project": "eastern-art-339418",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/firewalls/haproxy-web-fw-rules",
+            "source_ranges": [],
+            "source_service_accounts": [],
+            "source_tags": [
+              "web"
+            ],
+            "target_service_accounts": [],
+            "target_tags": [],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.records.data.google_compute_network.default"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_compute_firewall",
+      "name": "ssh_rule",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "allow": [
+              {
+                "ports": [
+                  "22"
+                ],
+                "protocol": "tcp"
+              }
+            ],
+            "creation_timestamp": "2022-01-28T11:03:20.588-08:00",
+            "deny": [],
+            "description": "",
+            "destination_ranges": [],
+            "direction": "INGRESS",
+            "disabled": false,
+            "enable_logging": null,
+            "id": "projects/eastern-art-339418/global/firewalls/ssh-fw-rules",
+            "log_config": [],
+            "name": "ssh-fw-rules",
+            "network": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/networks/default",
+            "priority": 1000,
+            "project": "eastern-art-339418",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/firewalls/ssh-fw-rules",
+            "source_ranges": [
+              "73.220.151.56/32"
+            ],
+            "source_service_accounts": [],
+            "source_tags": [
+              "ssh"
+            ],
+            "target_service_accounts": [],
+            "target_tags": [],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.records.data.google_compute_network.default"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_compute_instance",
+      "name": "compliance_mail",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 6,
+          "attributes": {
+            "advanced_machine_features": [],
+            "allow_stopping_for_update": null,
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "auto_delete": true,
+                "device_name": "persistent-disk-0",
+                "disk_encryption_key_raw": "",
+                "disk_encryption_key_sha256": "",
+                "initialize_params": [
+                  {
+                    "image": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-10-buster-v20220118",
+                    "labels": {},
+                    "size": 10,
+                    "type": "pd-standard"
+                  }
+                ],
+                "kms_key_self_link": "",
+                "mode": "READ_WRITE",
+                "source": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/zones/us-central1-a/disks/compliance-mail"
+              }
+            ],
+            "can_ip_forward": false,
+            "confidential_instance_config": [],
+            "cpu_platform": "Intel Broadwell",
+            "current_status": "RUNNING",
+            "deletion_protection": false,
+            "description": "Instance for Company/Silo Administrative Mail",
+            "desired_status": null,
+            "enable_display": false,
+            "guest_accelerator": [],
+            "hostname": "compliance-mail.localhost",
+            "id": "projects/eastern-art-339418/zones/us-central1-a/instances/compliance-mail",
+            "instance_id": "4425125071934816489",
+            "label_fingerprint": "42WmSpB8rSM=",
+            "labels": {},
+            "machine_type": "e2-small",
+            "metadata": {},
+            "metadata_fingerprint": "aHyDwroL5fQ=",
+            "metadata_startup_script": "sudo apt-get update\nsudo apt-get install -y postfix\n\nsudo echo '# See /usr/share/postfix/main.cf.dist for a commented, more complete version\n\n# Debian specific:  Specifying a file name will cause the first\n# line of that file to be used as the name.  The Debian default\n# is /etc/mailname.\n#myorigin = /etc/mailname\n\nsmtpd_sender_restrictions = reject_unknown_sender_domain\n\nsmtpd_banner = $myhostname ESMTP\nbiff = no\n\n# appending .domain is the MUA's job.\nappend_dot_mydomain = no\n\n# Uncomment the next line to generate \"delayed mail\" warnings\n#delay_warning_time = 4h\n\nreadme_directory = no\n\n# TLS parameters\nsmtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem\nsmtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key\nsmtpd_use_tls=yes\nsmtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache\nsmtp_tls_session_cache_database = btree:${data_directory}/smtp_scache\n\n# See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for\n# information on enabling SSL in the smtp client.\n\nsmtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated reject_unauth_destination\nmyhostname = \nalias_maps = hash:/etc/aliases\nalias_database = hash:/etc/aliases\n#myorigin = /etc/mailname\nmydestination = localhost.localdomain, localhost\nrelayhost = [smtp.gmail.com]:587\nmynetworks = 127.0.0.0/8\n#mailbox_size_limit = 0\n#recipient_delimiter = +\ninet_interfaces = all\n\n# enable SASL authentication\nsmtp_sasl_auth_enable = yes\n# disallow methods that allow anonymous authentication.\nsmtp_sasl_security_options = noanonymous\n# where to find sasl_passwd\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n# Enable STARTTLS encryption\nsmtp_use_tls = yes\n# where to find CA certificates\nsmtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt\n\n# Forward all incoming mail.\nvirtual_alias_domains = \n\nvirtual_alias_maps = hash:/etc/postfix/virtual\nsmtp_tls_policy_maps = hash:/etc/postfix/tls_policy\n\nsmtpd_recipient_restrictions = check_client_access cidr:/etc/postfix/client_checks\n\nsmtpd_client_restrictions = check_client_access cidr:/etc/postfix/client_checks\n\nsmtp_generic_maps = hash:/etc/postfix/generic' \u003e /etc/postfix/main.cf\n\nsudo touch /etc/postfix/virtual\nsudo touch /etc/postfix/sasl_passwd\nsudo touch /etc/postfix/tls_policy",
+            "min_cpu_platform": "",
+            "name": "compliance-mail",
+            "network_interface": [
+              {
+                "access_config": [
+                  {
+                    "nat_ip": "34.68.41.163",
+                    "network_tier": "PREMIUM",
+                    "public_ptr_domain_name": ""
+                  }
+                ],
+                "alias_ip_range": [],
+                "ipv6_access_config": [],
+                "ipv6_access_type": "",
+                "name": "nic0",
+                "network": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/networks/default",
+                "network_ip": "10.128.0.2",
+                "nic_type": "",
+                "queue_count": 0,
+                "stack_type": "IPV4_ONLY",
+                "subnetwork": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-central1/subnetworks/default",
+                "subnetwork_project": "eastern-art-339418"
+              }
+            ],
+            "project": "eastern-art-339418",
+            "reservation_affinity": [],
+            "resource_policies": [],
+            "scheduling": [
+              {
+                "automatic_restart": true,
+                "min_node_cpus": 0,
+                "node_affinities": [],
+                "on_host_maintenance": "MIGRATE",
+                "preemptible": false
+              }
+            ],
+            "scratch_disk": [],
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/zones/us-central1-a/instances/compliance-mail",
+            "service_account": [],
+            "shielded_instance_config": [
+              {
+                "enable_integrity_monitoring": true,
+                "enable_secure_boot": false,
+                "enable_vtpm": true
+              }
+            ],
+            "tags": [
+              "compliance",
+              "ssh"
+            ],
+            "tags_fingerprint": "PpC2UBaqPU0=",
+            "timeouts": null,
+            "zone": "us-central1-a"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiNiJ9",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_compute_instance",
+      "name": "web-forwarding",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 6,
+          "attributes": {
+            "advanced_machine_features": [],
+            "allow_stopping_for_update": null,
+            "attached_disk": [],
+            "boot_disk": [
+              {
+                "auto_delete": true,
+                "device_name": "persistent-disk-0",
+                "disk_encryption_key_raw": "",
+                "disk_encryption_key_sha256": "",
+                "initialize_params": [
+                  {
+                    "image": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-10-buster-v20220118",
+                    "labels": {},
+                    "size": 10,
+                    "type": "pd-standard"
+                  }
+                ],
+                "kms_key_self_link": "",
+                "mode": "READ_WRITE",
+                "source": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/zones/us-central1-a/disks/web-forwarding"
+              }
+            ],
+            "can_ip_forward": false,
+            "confidential_instance_config": [],
+            "cpu_platform": "Intel Broadwell",
+            "current_status": "RUNNING",
+            "deletion_protection": false,
+            "description": "Instance for Domain Silo web infrastructure",
+            "desired_status": null,
+            "enable_display": false,
+            "guest_accelerator": [],
+            "hostname": "web-forwarding.localhost",
+            "id": "projects/eastern-art-339418/zones/us-central1-a/instances/web-forwarding",
+            "instance_id": "47204957968498920",
+            "label_fingerprint": "42WmSpB8rSM=",
+            "labels": {},
+            "machine_type": "e2-small",
+            "metadata": {},
+            "metadata_fingerprint": "OgBacCOSEHs=",
+            "metadata_startup_script": "sudo apt-get update\nsudo apt-get install -y haproxy\n\nsudo echo '# HTTP/S to Domain Silo Infra\n\n#HTTP\nfrontend tcp-80\nbind 0.0.0.0:80\ndefault_backend kubernetes-80\n\nbackend kubernetes-80\nserver k1 35.232.123.170:80\n\n#HTTPS\nfrontend tcp-443\nbind 0.0.0.0:443\ndefault_backend kubernetes-443\n\nbackend kubernetes-443\nserver k1s 35.232.123.170:443' \u003e /etc/haproxy/haproxy.cfg",
+            "min_cpu_platform": "",
+            "name": "web-forwarding",
+            "network_interface": [
+              {
+                "access_config": [
+                  {
+                    "nat_ip": "35.239.241.143",
+                    "network_tier": "PREMIUM",
+                    "public_ptr_domain_name": ""
+                  }
+                ],
+                "alias_ip_range": [],
+                "ipv6_access_config": [],
+                "ipv6_access_type": "",
+                "name": "nic0",
+                "network": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/global/networks/default",
+                "network_ip": "10.128.0.3",
+                "nic_type": "",
+                "queue_count": 0,
+                "stack_type": "IPV4_ONLY",
+                "subnetwork": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/regions/us-central1/subnetworks/default",
+                "subnetwork_project": "eastern-art-339418"
+              }
+            ],
+            "project": "eastern-art-339418",
+            "reservation_affinity": [],
+            "resource_policies": [],
+            "scheduling": [
+              {
+                "automatic_restart": true,
+                "min_node_cpus": 0,
+                "node_affinities": [],
+                "on_host_maintenance": "MIGRATE",
+                "preemptible": false
+              }
+            ],
+            "scratch_disk": [],
+            "self_link": "https://www.googleapis.com/compute/v1/projects/eastern-art-339418/zones/us-central1-a/instances/web-forwarding",
+            "service_account": [],
+            "shielded_instance_config": [
+              {
+                "enable_integrity_monitoring": true,
+                "enable_secure_boot": false,
+                "enable_vtpm": true
+              }
+            ],
+            "tags": [
+              "http-server",
+              "https-server",
+              "ssh"
+            ],
+            "tags_fingerprint": "xEi19su0rvw=",
+            "timeouts": null,
+            "zone": "us-central1-a"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiNiJ9",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_dns_managed_zone",
+      "name": "hosted_zones",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "appointrenttoownblade.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for appointrenttoownblade.com",
+            "dns_name": "appointrenttoownblade.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/appointrenttoownblade-com-dns-zone",
+            "labels": null,
+            "name": "appointrenttoownblade-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "cashewdietfood.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for cashewdietfood.com",
+            "dns_name": "cashewdietfood.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/cashewdietfood-com-dns-zone",
+            "labels": null,
+            "name": "cashewdietfood-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "creditcardhempowder.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for creditcardhempowder.com",
+            "dns_name": "creditcardhempowder.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/creditcardhempowder-com-dns-zone",
+            "labels": null,
+            "name": "creditcardhempowder-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-b1.googledomains.com.",
+              "ns-cloud-b2.googledomains.com.",
+              "ns-cloud-b3.googledomains.com.",
+              "ns-cloud-b4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "creditcardhobfund.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for creditcardhobfund.com",
+            "dns_name": "creditcardhobfund.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/creditcardhobfund-com-dns-zone",
+            "labels": null,
+            "name": "creditcardhobfund-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-b1.googledomains.com.",
+              "ns-cloud-b2.googledomains.com.",
+              "ns-cloud-b3.googledomains.com.",
+              "ns-cloud-b4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "creditcardposterpulp.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for creditcardposterpulp.com",
+            "dns_name": "creditcardposterpulp.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/creditcardposterpulp-com-dns-zone",
+            "labels": null,
+            "name": "creditcardposterpulp-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "creditcardpretendto.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for creditcardpretendto.com",
+            "dns_name": "creditcardpretendto.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/creditcardpretendto-com-dns-zone",
+            "labels": null,
+            "name": "creditcardpretendto-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "debtcoachconnect.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for debtcoachconnect.com",
+            "dns_name": "debtcoachconnect.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/debtcoachconnect-com-dns-zone",
+            "labels": {},
+            "name": "debtcoachconnect-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "debtresolutionsplus.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for debtresolutionsplus.com",
+            "dns_name": "debtresolutionsplus.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/debtresolutionsplus-com-dns-zone",
+            "labels": {},
+            "name": "debtresolutionsplus-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "debtvirtualassist.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for debtvirtualassist.com",
+            "dns_name": "debtvirtualassist.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/debtvirtualassist-com-dns-zone",
+            "labels": {},
+            "name": "debtvirtualassist-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "easeforthdiet.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for easeforthdiet.com",
+            "dns_name": "easeforthdiet.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/easeforthdiet-com-dns-zone",
+            "labels": null,
+            "name": "easeforthdiet-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "fhaline.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for fhaline.com",
+            "dns_name": "fhaline.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/fhaline-com-dns-zone",
+            "labels": {},
+            "name": "fhaline-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "fiftydietfit.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for fiftydietfit.com",
+            "dns_name": "fiftydietfit.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/fiftydietfit-com-dns-zone",
+            "labels": null,
+            "name": "fiftydietfit-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "flamedietflyer.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for flamedietflyer.com",
+            "dns_name": "flamedietflyer.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/flamedietflyer-com-dns-zone",
+            "labels": null,
+            "name": "flamedietflyer-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "fondrefinancetrip.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for fondrefinancetrip.com",
+            "dns_name": "fondrefinancetrip.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/fondrefinancetrip-com-dns-zone",
+            "labels": null,
+            "name": "fondrefinancetrip-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "funrefinancefarm.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for funrefinancefarm.com",
+            "dns_name": "funrefinancefarm.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/funrefinancefarm-com-dns-zone",
+            "labels": null,
+            "name": "funrefinancefarm-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "funrefinanceshow.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for funrefinanceshow.com",
+            "dns_name": "funrefinanceshow.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/funrefinanceshow-com-dns-zone",
+            "labels": null,
+            "name": "funrefinanceshow-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "gadgetrefinance.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for gadgetrefinance.com",
+            "dns_name": "gadgetrefinance.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/gadgetrefinance-com-dns-zone",
+            "labels": null,
+            "name": "gadgetrefinance-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "homerefinancelobby.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for homerefinancelobby.com",
+            "dns_name": "homerefinancelobby.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/homerefinancelobby-com-dns-zone",
+            "labels": null,
+            "name": "homerefinancelobby-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "midwestrefinancepro.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for midwestrefinancepro.com",
+            "dns_name": "midwestrefinancepro.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/midwestrefinancepro-com-dns-zone",
+            "labels": {},
+            "name": "midwestrefinancepro-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "mortgagestarsbrows.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for mortgagestarsbrows.com",
+            "dns_name": "mortgagestarsbrows.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/mortgagestarsbrows-com-dns-zone",
+            "labels": null,
+            "name": "mortgagestarsbrows-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "mortgagestraysuit.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for mortgagestraysuit.com",
+            "dns_name": "mortgagestraysuit.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/mortgagestraysuit-com-dns-zone",
+            "labels": null,
+            "name": "mortgagestraysuit-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "personaldebtoption.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for personaldebtoption.com",
+            "dns_name": "personaldebtoption.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/personaldebtoption-com-dns-zone",
+            "labels": {},
+            "name": "personaldebtoption-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "playofmortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for playofmortgage.com",
+            "dns_name": "playofmortgage.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/playofmortgage-com-dns-zone",
+            "labels": {},
+            "name": "playofmortgage-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "powlegpersonalloan.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for powlegpersonalloan.com",
+            "dns_name": "powlegpersonalloan.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/powlegpersonalloan-com-dns-zone",
+            "labels": null,
+            "name": "powlegpersonalloan-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "puppersonalloanfits.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for puppersonalloanfits.com",
+            "dns_name": "puppersonalloanfits.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/puppersonalloanfits-com-dns-zone",
+            "labels": null,
+            "name": "puppersonalloanfits-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "redboxpersonalloans.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for redboxpersonalloans.com",
+            "dns_name": "redboxpersonalloans.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/redboxpersonalloans-com-dns-zone",
+            "labels": null,
+            "name": "redboxpersonalloans-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "refinancegypsy.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for refinancegypsy.com",
+            "dns_name": "refinancegypsy.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/refinancegypsy-com-dns-zone",
+            "labels": null,
+            "name": "refinancegypsy-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "refinancehighfit.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for refinancehighfit.com",
+            "dns_name": "refinancehighfit.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/refinancehighfit-com-dns-zone",
+            "labels": null,
+            "name": "refinancehighfit-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "refinancequickquote.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for refinancequickquote.com",
+            "dns_name": "refinancequickquote.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/refinancequickquote-com-dns-zone",
+            "labels": {},
+            "name": "refinancequickquote-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "refinanceserv.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for refinanceserv.com",
+            "dns_name": "refinanceserv.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/refinanceserv-com-dns-zone",
+            "labels": {},
+            "name": "refinanceserv-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "renttoowndesert.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for renttoowndesert.com",
+            "dns_name": "renttoowndesert.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/renttoowndesert-com-dns-zone",
+            "labels": null,
+            "name": "renttoowndesert-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "renttoownmutual.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for renttoownmutual.com",
+            "dns_name": "renttoownmutual.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/renttoownmutual-com-dns-zone",
+            "labels": null,
+            "name": "renttoownmutual-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "renttoownseason.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for renttoownseason.com",
+            "dns_name": "renttoownseason.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/renttoownseason-com-dns-zone",
+            "labels": null,
+            "name": "renttoownseason-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "renttoowntomorrow.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for renttoowntomorrow.com",
+            "dns_name": "renttoowntomorrow.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/renttoowntomorrow-com-dns-zone",
+            "labels": {},
+            "name": "renttoowntomorrow-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "roommortgagetimer.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for roommortgagetimer.com",
+            "dns_name": "roommortgagetimer.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/roommortgagetimer-com-dns-zone",
+            "labels": null,
+            "name": "roommortgagetimer-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "sealcreditcardtruck.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for sealcreditcardtruck.com",
+            "dns_name": "sealcreditcardtruck.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/sealcreditcardtruck-com-dns-zone",
+            "labels": null,
+            "name": "sealcreditcardtruck-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "slapmortgagepower.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for slapmortgagepower.com",
+            "dns_name": "slapmortgagepower.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/slapmortgagepower-com-dns-zone",
+            "labels": null,
+            "name": "slapmortgagepower-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "smilemortgagevegan.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for smilemortgagevegan.com",
+            "dns_name": "smilemortgagevegan.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/smilemortgagevegan-com-dns-zone",
+            "labels": null,
+            "name": "smilemortgagevegan-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-d1.googledomains.com.",
+              "ns-cloud-d2.googledomains.com.",
+              "ns-cloud-d3.googledomains.com.",
+              "ns-cloud-d4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "spraymortgagestart.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for spraymortgagestart.com",
+            "dns_name": "spraymortgagestart.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/spraymortgagestart-com-dns-zone",
+            "labels": null,
+            "name": "spraymortgagestart-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "starsurelymortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for starsurelymortgage.com",
+            "dns_name": "starsurelymortgage.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/starsurelymortgage-com-dns-zone",
+            "labels": {},
+            "name": "starsurelymortgage-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "storymortgagestump.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for storymortgagestump.com",
+            "dns_name": "storymortgagestump.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/storymortgagestump-com-dns-zone",
+            "labels": null,
+            "name": "storymortgagestump-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "strandnamemortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for strandnamemortgage.com",
+            "dns_name": "strandnamemortgage.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/strandnamemortgage-com-dns-zone",
+            "labels": null,
+            "name": "strandnamemortgage-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "sweetmortgagepilot.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for sweetmortgagepilot.com",
+            "dns_name": "sweetmortgagepilot.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/sweetmortgagepilot-com-dns-zone",
+            "labels": {},
+            "name": "sweetmortgagepilot-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "tiedocookdietairs.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for tiedocookdietairs.com",
+            "dns_name": "tiedocookdietairs.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/tiedocookdietairs-com-dns-zone",
+            "labels": null,
+            "name": "tiedocookdietairs-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-b1.googledomains.com.",
+              "ns-cloud-b2.googledomains.com.",
+              "ns-cloud-b3.googledomains.com.",
+              "ns-cloud-b4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "tipsmortgagebreak.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for tipsmortgagebreak.com",
+            "dns_name": "tipsmortgagebreak.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/tipsmortgagebreak-com-dns-zone",
+            "labels": {},
+            "name": "tipsmortgagebreak-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-e1.googledomains.com.",
+              "ns-cloud-e2.googledomains.com.",
+              "ns-cloud-e3.googledomains.com.",
+              "ns-cloud-e4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "verdictrenttoownsmart.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for verdictrenttoownsmart.com",
+            "dns_name": "verdictrenttoownsmart.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/verdictrenttoownsmart-com-dns-zone",
+            "labels": null,
+            "name": "verdictrenttoownsmart-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-a1.googledomains.com.",
+              "ns-cloud-a2.googledomains.com.",
+              "ns-cloud-a3.googledomains.com.",
+              "ns-cloud-a4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "waywardpersonalloans.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for waywardpersonalloans.com",
+            "dns_name": "waywardpersonalloans.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/waywardpersonalloans-com-dns-zone",
+            "labels": null,
+            "name": "waywardpersonalloans-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-b1.googledomains.com.",
+              "ns-cloud-b2.googledomains.com.",
+              "ns-cloud-b3.googledomains.com.",
+              "ns-cloud-b4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "yourloanhub.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for yourloanhub.com",
+            "dns_name": "yourloanhub.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/yourloanhub-com-dns-zone",
+            "labels": {},
+            "name": "yourloanhub-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        },
+        {
+          "index_key": "yourrefisources.com",
+          "schema_version": 0,
+          "attributes": {
+            "description": "Hosted DNS zone for yourrefisources.com",
+            "dns_name": "yourrefisources.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/eastern-art-339418/managedZones/yourrefisources-com-dns-zone",
+            "labels": {},
+            "name": "yourrefisources-com-dns-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "eastern-art-339418",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "a_mail_dns_record",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "debtcoachconnect.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtcoachconnect-com-dns-zone/rrsets/mail.debtcoachconnect.com./A",
+            "managed_zone": "debtcoachconnect-com-dns-zone",
+            "name": "mail.debtcoachconnect.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtresolutionsplus.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtresolutionsplus-com-dns-zone/rrsets/mail.debtresolutionsplus.com./A",
+            "managed_zone": "debtresolutionsplus-com-dns-zone",
+            "name": "mail.debtresolutionsplus.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtvirtualassist.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtvirtualassist-com-dns-zone/rrsets/mail.debtvirtualassist.com./A",
+            "managed_zone": "debtvirtualassist-com-dns-zone",
+            "name": "mail.debtvirtualassist.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "fhaline.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/fhaline-com-dns-zone/rrsets/mail.fhaline.com./A",
+            "managed_zone": "fhaline-com-dns-zone",
+            "name": "mail.fhaline.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "midwestrefinancepro.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/midwestrefinancepro-com-dns-zone/rrsets/mail.midwestrefinancepro.com./A",
+            "managed_zone": "midwestrefinancepro-com-dns-zone",
+            "name": "mail.midwestrefinancepro.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.mail_ip"
+          ]
+        },
+        {
+          "index_key": "personaldebtoption.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/personaldebtoption-com-dns-zone/rrsets/mail.personaldebtoption.com./A",
+            "managed_zone": "personaldebtoption-com-dns-zone",
+            "name": "mail.personaldebtoption.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.mail_ip"
+          ]
+        },
+        {
+          "index_key": "playofmortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/playofmortgage-com-dns-zone/rrsets/mail.playofmortgage.com./A",
+            "managed_zone": "playofmortgage-com-dns-zone",
+            "name": "mail.playofmortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinancequickquote.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinancequickquote-com-dns-zone/rrsets/mail.refinancequickquote.com./A",
+            "managed_zone": "refinancequickquote-com-dns-zone",
+            "name": "mail.refinancequickquote.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinanceserv.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinanceserv-com-dns-zone/rrsets/mail.refinanceserv.com./A",
+            "managed_zone": "refinanceserv-com-dns-zone",
+            "name": "mail.refinanceserv.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "renttoowntomorrow.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/renttoowntomorrow-com-dns-zone/rrsets/mail.renttoowntomorrow.com./A",
+            "managed_zone": "renttoowntomorrow-com-dns-zone",
+            "name": "mail.renttoowntomorrow.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "starsurelymortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/starsurelymortgage-com-dns-zone/rrsets/mail.starsurelymortgage.com./A",
+            "managed_zone": "starsurelymortgage-com-dns-zone",
+            "name": "mail.starsurelymortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "sweetmortgagepilot.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/sweetmortgagepilot-com-dns-zone/rrsets/mail.sweetmortgagepilot.com./A",
+            "managed_zone": "sweetmortgagepilot-com-dns-zone",
+            "name": "mail.sweetmortgagepilot.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.mail_ip"
+          ]
+        },
+        {
+          "index_key": "tipsmortgagebreak.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/tipsmortgagebreak-com-dns-zone/rrsets/mail.tipsmortgagebreak.com./A",
+            "managed_zone": "tipsmortgagebreak-com-dns-zone",
+            "name": "mail.tipsmortgagebreak.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourloanhub.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourloanhub-com-dns-zone/rrsets/mail.yourloanhub.com./A",
+            "managed_zone": "yourloanhub-com-dns-zone",
+            "name": "mail.yourloanhub.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.mail_ip"
+          ]
+        },
+        {
+          "index_key": "yourrefisources.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourrefisources-com-dns-zone/rrsets/mail.yourrefisources.com./A",
+            "managed_zone": "yourrefisources-com-dns-zone",
+            "name": "mail.yourrefisources.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "34.68.41.163"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.mail_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "a_web_dns_record",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "debtcoachconnect.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtcoachconnect-com-dns-zone/rrsets/debtcoachconnect.com./A",
+            "managed_zone": "debtcoachconnect-com-dns-zone",
+            "name": "debtcoachconnect.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtresolutionsplus.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtresolutionsplus-com-dns-zone/rrsets/debtresolutionsplus.com./A",
+            "managed_zone": "debtresolutionsplus-com-dns-zone",
+            "name": "debtresolutionsplus.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.web_ip"
+          ]
+        },
+        {
+          "index_key": "debtvirtualassist.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtvirtualassist-com-dns-zone/rrsets/debtvirtualassist.com./A",
+            "managed_zone": "debtvirtualassist-com-dns-zone",
+            "name": "debtvirtualassist.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.web_ip"
+          ]
+        },
+        {
+          "index_key": "fhaline.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/fhaline-com-dns-zone/rrsets/fhaline.com./A",
+            "managed_zone": "fhaline-com-dns-zone",
+            "name": "fhaline.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "midwestrefinancepro.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/midwestrefinancepro-com-dns-zone/rrsets/midwestrefinancepro.com./A",
+            "managed_zone": "midwestrefinancepro-com-dns-zone",
+            "name": "midwestrefinancepro.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "personaldebtoption.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/personaldebtoption-com-dns-zone/rrsets/personaldebtoption.com./A",
+            "managed_zone": "personaldebtoption-com-dns-zone",
+            "name": "personaldebtoption.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "playofmortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/playofmortgage-com-dns-zone/rrsets/playofmortgage.com./A",
+            "managed_zone": "playofmortgage-com-dns-zone",
+            "name": "playofmortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinancequickquote.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinancequickquote-com-dns-zone/rrsets/refinancequickquote.com./A",
+            "managed_zone": "refinancequickquote-com-dns-zone",
+            "name": "refinancequickquote.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinanceserv.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinanceserv-com-dns-zone/rrsets/refinanceserv.com./A",
+            "managed_zone": "refinanceserv-com-dns-zone",
+            "name": "refinanceserv.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "renttoowntomorrow.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/renttoowntomorrow-com-dns-zone/rrsets/renttoowntomorrow.com./A",
+            "managed_zone": "renttoowntomorrow-com-dns-zone",
+            "name": "renttoowntomorrow.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.web_ip"
+          ]
+        },
+        {
+          "index_key": "starsurelymortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/starsurelymortgage-com-dns-zone/rrsets/starsurelymortgage.com./A",
+            "managed_zone": "starsurelymortgage-com-dns-zone",
+            "name": "starsurelymortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "sweetmortgagepilot.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/sweetmortgagepilot-com-dns-zone/rrsets/sweetmortgagepilot.com./A",
+            "managed_zone": "sweetmortgagepilot-com-dns-zone",
+            "name": "sweetmortgagepilot.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "tipsmortgagebreak.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/tipsmortgagebreak-com-dns-zone/rrsets/tipsmortgagebreak.com./A",
+            "managed_zone": "tipsmortgagebreak-com-dns-zone",
+            "name": "tipsmortgagebreak.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourloanhub.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourloanhub-com-dns-zone/rrsets/yourloanhub.com./A",
+            "managed_zone": "yourloanhub-com-dns-zone",
+            "name": "yourloanhub.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones",
+            "module.records.google_compute_address.web_ip"
+          ]
+        },
+        {
+          "index_key": "yourrefisources.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourrefisources-com-dns-zone/rrsets/yourrefisources.com./A",
+            "managed_zone": "yourrefisources-com-dns-zone",
+            "name": "yourrefisources.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "35.239.241.143"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_compute_address.web_ip",
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "cname_dns_record",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "debtcoachconnect.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtcoachconnect-com-dns-zone/rrsets/www.debtcoachconnect.com./CNAME",
+            "managed_zone": "debtcoachconnect-com-dns-zone",
+            "name": "www.debtcoachconnect.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "debtcoachconnect.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtresolutionsplus.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtresolutionsplus-com-dns-zone/rrsets/www.debtresolutionsplus.com./CNAME",
+            "managed_zone": "debtresolutionsplus-com-dns-zone",
+            "name": "www.debtresolutionsplus.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "debtresolutionsplus.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtvirtualassist.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtvirtualassist-com-dns-zone/rrsets/www.debtvirtualassist.com./CNAME",
+            "managed_zone": "debtvirtualassist-com-dns-zone",
+            "name": "www.debtvirtualassist.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "debtvirtualassist.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "fhaline.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/fhaline-com-dns-zone/rrsets/www.fhaline.com./CNAME",
+            "managed_zone": "fhaline-com-dns-zone",
+            "name": "www.fhaline.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "fhaline.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "midwestrefinancepro.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/midwestrefinancepro-com-dns-zone/rrsets/www.midwestrefinancepro.com./CNAME",
+            "managed_zone": "midwestrefinancepro-com-dns-zone",
+            "name": "www.midwestrefinancepro.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "midwestrefinancepro.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "personaldebtoption.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/personaldebtoption-com-dns-zone/rrsets/www.personaldebtoption.com./CNAME",
+            "managed_zone": "personaldebtoption-com-dns-zone",
+            "name": "www.personaldebtoption.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "personaldebtoption.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "playofmortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/playofmortgage-com-dns-zone/rrsets/www.playofmortgage.com./CNAME",
+            "managed_zone": "playofmortgage-com-dns-zone",
+            "name": "www.playofmortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "playofmortgage.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinancequickquote.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinancequickquote-com-dns-zone/rrsets/www.refinancequickquote.com./CNAME",
+            "managed_zone": "refinancequickquote-com-dns-zone",
+            "name": "www.refinancequickquote.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "refinancequickquote.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinanceserv.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinanceserv-com-dns-zone/rrsets/www.refinanceserv.com./CNAME",
+            "managed_zone": "refinanceserv-com-dns-zone",
+            "name": "www.refinanceserv.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "refinanceserv.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "renttoowntomorrow.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/renttoowntomorrow-com-dns-zone/rrsets/www.renttoowntomorrow.com./CNAME",
+            "managed_zone": "renttoowntomorrow-com-dns-zone",
+            "name": "www.renttoowntomorrow.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "renttoowntomorrow.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "starsurelymortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/starsurelymortgage-com-dns-zone/rrsets/www.starsurelymortgage.com./CNAME",
+            "managed_zone": "starsurelymortgage-com-dns-zone",
+            "name": "www.starsurelymortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "starsurelymortgage.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "sweetmortgagepilot.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/sweetmortgagepilot-com-dns-zone/rrsets/www.sweetmortgagepilot.com./CNAME",
+            "managed_zone": "sweetmortgagepilot-com-dns-zone",
+            "name": "www.sweetmortgagepilot.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "sweetmortgagepilot.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "tipsmortgagebreak.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/tipsmortgagebreak-com-dns-zone/rrsets/www.tipsmortgagebreak.com./CNAME",
+            "managed_zone": "tipsmortgagebreak-com-dns-zone",
+            "name": "www.tipsmortgagebreak.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "tipsmortgagebreak.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourloanhub.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourloanhub-com-dns-zone/rrsets/www.yourloanhub.com./CNAME",
+            "managed_zone": "yourloanhub-com-dns-zone",
+            "name": "www.yourloanhub.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "yourloanhub.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourrefisources.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourrefisources-com-dns-zone/rrsets/www.yourrefisources.com./CNAME",
+            "managed_zone": "yourrefisources-com-dns-zone",
+            "name": "www.yourrefisources.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "yourrefisources.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "mx_dns_record",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "debtcoachconnect.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtcoachconnect-com-dns-zone/rrsets/debtcoachconnect.com./MX",
+            "managed_zone": "debtcoachconnect-com-dns-zone",
+            "name": "debtcoachconnect.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.debtcoachconnect.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtresolutionsplus.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtresolutionsplus-com-dns-zone/rrsets/debtresolutionsplus.com./MX",
+            "managed_zone": "debtresolutionsplus-com-dns-zone",
+            "name": "debtresolutionsplus.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.debtresolutionsplus.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtvirtualassist.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtvirtualassist-com-dns-zone/rrsets/debtvirtualassist.com./MX",
+            "managed_zone": "debtvirtualassist-com-dns-zone",
+            "name": "debtvirtualassist.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.debtvirtualassist.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "fhaline.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/fhaline-com-dns-zone/rrsets/fhaline.com./MX",
+            "managed_zone": "fhaline-com-dns-zone",
+            "name": "fhaline.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.fhaline.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "midwestrefinancepro.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/midwestrefinancepro-com-dns-zone/rrsets/midwestrefinancepro.com./MX",
+            "managed_zone": "midwestrefinancepro-com-dns-zone",
+            "name": "midwestrefinancepro.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.midwestrefinancepro.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "personaldebtoption.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/personaldebtoption-com-dns-zone/rrsets/personaldebtoption.com./MX",
+            "managed_zone": "personaldebtoption-com-dns-zone",
+            "name": "personaldebtoption.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.personaldebtoption.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "playofmortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/playofmortgage-com-dns-zone/rrsets/playofmortgage.com./MX",
+            "managed_zone": "playofmortgage-com-dns-zone",
+            "name": "playofmortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.playofmortgage.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinancequickquote.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinancequickquote-com-dns-zone/rrsets/refinancequickquote.com./MX",
+            "managed_zone": "refinancequickquote-com-dns-zone",
+            "name": "refinancequickquote.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.refinancequickquote.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinanceserv.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinanceserv-com-dns-zone/rrsets/refinanceserv.com./MX",
+            "managed_zone": "refinanceserv-com-dns-zone",
+            "name": "refinanceserv.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.refinanceserv.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "renttoowntomorrow.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/renttoowntomorrow-com-dns-zone/rrsets/renttoowntomorrow.com./MX",
+            "managed_zone": "renttoowntomorrow-com-dns-zone",
+            "name": "renttoowntomorrow.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.renttoowntomorrow.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "starsurelymortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/starsurelymortgage-com-dns-zone/rrsets/starsurelymortgage.com./MX",
+            "managed_zone": "starsurelymortgage-com-dns-zone",
+            "name": "starsurelymortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.starsurelymortgage.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "sweetmortgagepilot.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/sweetmortgagepilot-com-dns-zone/rrsets/sweetmortgagepilot.com./MX",
+            "managed_zone": "sweetmortgagepilot-com-dns-zone",
+            "name": "sweetmortgagepilot.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.sweetmortgagepilot.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "tipsmortgagebreak.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/tipsmortgagebreak-com-dns-zone/rrsets/tipsmortgagebreak.com./MX",
+            "managed_zone": "tipsmortgagebreak-com-dns-zone",
+            "name": "tipsmortgagebreak.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.tipsmortgagebreak.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourloanhub.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourloanhub-com-dns-zone/rrsets/yourloanhub.com./MX",
+            "managed_zone": "yourloanhub-com-dns-zone",
+            "name": "yourloanhub.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.yourloanhub.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourrefisources.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourrefisources-com-dns-zone/rrsets/yourrefisources.com./MX",
+            "managed_zone": "yourrefisources-com-dns-zone",
+            "name": "yourrefisources.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "10 mail.yourrefisources.com."
+            ],
+            "ttl": 300,
+            "type": "MX"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.records",
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "txt_mail_dns_record",
+      "provider": "module.records.provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "debtcoachconnect.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtcoachconnect-com-dns-zone/rrsets/debtcoachconnect.com./TXT",
+            "managed_zone": "debtcoachconnect-com-dns-zone",
+            "name": "debtcoachconnect.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtresolutionsplus.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtresolutionsplus-com-dns-zone/rrsets/debtresolutionsplus.com./TXT",
+            "managed_zone": "debtresolutionsplus-com-dns-zone",
+            "name": "debtresolutionsplus.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "debtvirtualassist.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/debtvirtualassist-com-dns-zone/rrsets/debtvirtualassist.com./TXT",
+            "managed_zone": "debtvirtualassist-com-dns-zone",
+            "name": "debtvirtualassist.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "fhaline.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/fhaline-com-dns-zone/rrsets/fhaline.com./TXT",
+            "managed_zone": "fhaline-com-dns-zone",
+            "name": "fhaline.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "midwestrefinancepro.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/midwestrefinancepro-com-dns-zone/rrsets/midwestrefinancepro.com./TXT",
+            "managed_zone": "midwestrefinancepro-com-dns-zone",
+            "name": "midwestrefinancepro.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "personaldebtoption.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/personaldebtoption-com-dns-zone/rrsets/personaldebtoption.com./TXT",
+            "managed_zone": "personaldebtoption-com-dns-zone",
+            "name": "personaldebtoption.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "playofmortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/playofmortgage-com-dns-zone/rrsets/playofmortgage.com./TXT",
+            "managed_zone": "playofmortgage-com-dns-zone",
+            "name": "playofmortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinancequickquote.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinancequickquote-com-dns-zone/rrsets/refinancequickquote.com./TXT",
+            "managed_zone": "refinancequickquote-com-dns-zone",
+            "name": "refinancequickquote.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "refinanceserv.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/refinanceserv-com-dns-zone/rrsets/refinanceserv.com./TXT",
+            "managed_zone": "refinanceserv-com-dns-zone",
+            "name": "refinanceserv.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "renttoowntomorrow.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/renttoowntomorrow-com-dns-zone/rrsets/renttoowntomorrow.com./TXT",
+            "managed_zone": "renttoowntomorrow-com-dns-zone",
+            "name": "renttoowntomorrow.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "starsurelymortgage.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/starsurelymortgage-com-dns-zone/rrsets/starsurelymortgage.com./TXT",
+            "managed_zone": "starsurelymortgage-com-dns-zone",
+            "name": "starsurelymortgage.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "sweetmortgagepilot.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/sweetmortgagepilot-com-dns-zone/rrsets/sweetmortgagepilot.com./TXT",
+            "managed_zone": "sweetmortgagepilot-com-dns-zone",
+            "name": "sweetmortgagepilot.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "tipsmortgagebreak.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/tipsmortgagebreak-com-dns-zone/rrsets/tipsmortgagebreak.com./TXT",
+            "managed_zone": "tipsmortgagebreak-com-dns-zone",
+            "name": "tipsmortgagebreak.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourloanhub.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourloanhub-com-dns-zone/rrsets/yourloanhub.com./TXT",
+            "managed_zone": "yourloanhub-com-dns-zone",
+            "name": "yourloanhub.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        },
+        {
+          "index_key": "yourrefisources.com",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/eastern-art-339418/managedZones/yourrefisources-com-dns-zone/rrsets/yourrefisources.com./TXT",
+            "managed_zone": "yourrefisources-com-dns-zone",
+            "name": "yourrefisources.com.",
+            "project": "eastern-art-339418",
+            "rrdatas": [
+              "\"v=spf1\" \"mx\" \"~all\""
+            ],
+            "ttl": 300,
+            "type": "TXT"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "module.records.google_dns_managed_zone.hosted_zones"
+          ]
+        }
+      ]
+    }
+  ]
+}
