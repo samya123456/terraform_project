@@ -1,0 +1,885 @@
+stages:
+  - dependencies
+  - security
+  - compliance
+  - pull request
+  - test
+  - build
+  - migrate
+  - scanning
+  - deploy
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" || ($CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "develop" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "staging")
+      variables:
+        IMAGE_ENVIRONMENT: qa
+        RXPLATFORM_ENVIRONMENT: qa
+        RXPLATFORM_DEPLOYMENT_URL: https://api-qa.rxmg.app
+        CLUSTER_LOCATION: us-central1
+        CURRENT_BRANCH: develop
+        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
+        UNIT_TEST_CONFIG: "extension=pcov"
+    - if: $CI_COMMIT_BRANCH == "staging" || ($CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "staging" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production")
+      variables:
+        IMAGE_ENVIRONMENT: staging
+        RXPLATFORM_ENVIRONMENT: staging
+        RXPLATFORM_DEPLOYMENT_URL: https://api-staging.rxmg.app
+        CLUSTER_LOCATION: us-central1
+        CURRENT_BRANCH: staging
+        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
+        UNIT_TEST_CONFIG: "extension=pcov"
+    - if: $CI_COMMIT_TAG
+      variables:
+        IMAGE_ENVIRONMENT: production
+        RXPLATFORM_ENVIRONMENT: production
+        RXPLATFORM_DEPLOYMENT_URL: https://api.rxmg.app
+        CLUSTER_LOCATION: us-central1
+        CURRENT_BRANCH: production
+        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+        UNIT_TEST_CONFIG: "zend_extension=xdebug\\nxdebug.mode=coverage,gcstats\\nxdebug.start_with_request=yes"
+    - if: $CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "develop" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "staging" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "production" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "staging" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production")
+      variables:
+        IMAGE_ENVIRONMENT: dynamic/$CI_COMMIT_REF_SLUG
+        RXPLATFORM_ENVIRONMENT: dynamic
+        RXPLATFORM_DEPLOYMENT_URL: https://api-$CI_COMMIT_REF_SLUG.rxmg.app
+        CLUSTER_LOCATION: us-central1
+        CURRENT_BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
+        UNIT_TEST_CONFIG: "extension=pcov"
+        USE_PULL_REQUEST_ENVIRONMENT: "true"
+    - if: $CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "develop" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "staging" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "production"
+      variables:
+        IS_DUMMY_PULL_REQUEST: "true"
+    - if: $CI_COMMIT_BRANCH == "production"
+      variables:
+        SYNC_SOURCE_BRANCH: production
+        SYNC_TARGET_BRANCH: staging
+        SYNC_BRANCHES: "true"
+        DS_EXCLUDED_ANALYZERS: retire-js
+
+variables:
+  PROJECT_ID: $PROJECT_ID
+
+  COMPOSER_AUTH: $COMPOSER_AUTH
+
+  IMAGES_PREFIX: gcr.io/$PROJECT_ID/rxplatform/backend
+  HELPER_IMAGES_PREFIX: $IMAGES_PREFIX/helpers
+  FULL_IMAGES_PREFIX: $IMAGES_PREFIX/$IMAGE_ENVIRONMENT
+
+  TESTER_IMAGE_NAME: $HELPER_IMAGES_PREFIX/tester
+  MYSQL_IMAGE_NAME: $HELPER_IMAGES_PREFIX/mysql
+  MONGO_IMAGE_NAME: $HELPER_IMAGES_PREFIX/mongo
+  REVIEW_ENVIRONMENT_IMAGE_NAME: $HELPER_IMAGES_PREFIX/review-environment
+  JIRA_IMAGE_NAME: $HELPER_IMAGES_PREFIX/jira
+
+  WEB_IMAGE_NAME: $FULL_IMAGES_PREFIX/web
+  QUEUE_IMAGE_NAME: $FULL_IMAGES_PREFIX/queue
+  SCHEDULER_IMAGE_NAME: $FULL_IMAGES_PREFIX/scheduler
+
+  CLUSTER_NAME: $RXPLATFORM_ENVIRONMENT-cluster
+
+  BACKEND_BRANCH:
+    value: ""
+    description: Branch to use for the backend deployment.
+
+  FRONTEND_BRANCH:
+    value: ""
+    description: Branch to use for the frontend deployment.
+
+  INCOMING_BRANCH:
+    value: ""
+    description: Branch to use for the incoming deployment.
+
+  MIGRATIONS_BRANCH:
+    value: ""
+    description: Branch to use for the migrations.
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Security/Container-Scanning.gitlab-ci.yml
+sast:
+  stage: security
+dependency_scanning:
+  stage: security
+secret_detection:
+  stage: security
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_TAG
+  variables:
+    GIT_DEPTH: "50"
+license_scanning:
+  stage: compliance
+  needs: []
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_TAG
+
+
+nodejs-scan-sast:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_TAG
+phpcs-security-audit-sast:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_TAG
+semgrep-sast:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_TAG
+gemnasium-dependency_scanning:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_TAG
+
+container_scanning:
+  stage: scanning
+  needs: ["build:web"]
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+  variables:
+    DOCKER_IMAGE: $WEB_IMAGE_NAME:$CI_COMMIT_SHA
+    DOCKERFILE_PATH: "deploy/Dockerfile-web"
+    GIT_STRATEGY: "fetch"
+
+container_scanning:queue:
+  extends: container_scanning
+  needs: ["build:queue"]
+  variables:
+    DOCKER_IMAGE: $QUEUE_IMAGE_NAME:$CI_COMMIT_SHA
+    DOCKERFILE_PATH: "deploy/Dockerfile-queue"
+
+container_scanning:scheduler:
+  extends: container_scanning
+  needs: ["build:scheduler"]
+  variables:
+    DOCKER_IMAGE: $SCHEDULER_IMAGE_NAME:$CI_COMMIT_SHA
+    DOCKERFILE_PATH: "deploy/Dockerfile-scheduler"
+
+
+.dependencies:
+  stage: dependencies
+
+  needs: []
+
+  rules:
+    - when: never
+
+  image: google/cloud-sdk
+
+  script:
+    - cp $DEPENDENCY_DOCKERFILE Dockerfile
+    - gcloud builds submit --config .gitlab/cloudbuild-generic.yaml --substitutions "_IMAGE_NAME=$DEPENDENCY_IMAGE,COMMIT_SHA=$CI_COMMIT_SHA" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
+
+  allow_failure: true
+
+dependencies:tester:
+  extends: .dependencies
+
+  rules:
+    - when: manual
+
+  variables:
+    DEPENDENCY_DOCKERFILE: deploy/helpers/tester/Dockerfile-tester
+    DEPENDENCY_IMAGE: $TESTER_IMAGE_NAME
+
+dependencies:mysql:
+  extends: .dependencies
+
+  rules:
+    - when: manual
+
+  variables:
+    DEPENDENCY_DOCKERFILE: deploy/helpers/mysql/Dockerfile-mysql
+    DEPENDENCY_IMAGE: $MYSQL_IMAGE_NAME
+
+  before_script:
+    - cp deploy/helpers/mysql/mysql-init.sql mysql-init.sql
+
+dependencies:mongo:
+  extends: .dependencies
+
+  rules:
+    - when: manual
+
+  variables:
+    DEPENDENCY_DOCKERFILE: deploy/helpers/mongo/Dockerfile-mongo
+    DEPENDENCY_IMAGE: $MONGO_IMAGE_NAME
+
+  before_script:
+    - cp deploy/helpers/mongo/mongo-init.js mongo-init.js
+
+dependencies:review_environment:
+  extends: .dependencies
+
+  rules:
+    - when: manual
+
+  variables:
+    DEPENDENCY_DOCKERFILE: deploy/helpers/review-environment/Dockerfile-review-environment
+    DEPENDENCY_IMAGE: $REVIEW_ENVIRONMENT_IMAGE_NAME
+
+dependencies:jira:
+  extends: .dependencies
+
+  rules:
+    - when: manual
+
+  variables:
+    DEPENDENCY_DOCKERFILE: deploy/helpers/jira/Dockerfile-jira
+    DEPENDENCY_IMAGE: $JIRA_IMAGE_NAME
+
+dummy:pull-request:
+  stage: pull request
+
+  needs: []
+
+  rules:
+    - if: $IS_DUMMY_PULL_REQUEST == "true"
+
+  script:
+    - echo "Dummy job to allow merge requests into branches other than develop (at least one job is required for each pipeline)"
+
+  allow_failure: true
+
+composer-setup:
+  stage: dependencies
+
+  rules:
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  image: $TESTER_IMAGE_NAME
+
+  variables:
+    DEFAULT_MIGRATIONS_BRANCH: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+
+  script:
+    - MIGRATIONS_SAME_BRANCH_EXISTS=$(git ls-remote --heads "https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_NAMESPACE/rxplatform-migrations.git" "$CURRENT_BRANCH" | wc -l)
+    - if [ ! -z "$MIGRATIONS_BRANCH" ]; then echo "Using set variable for migrations"; elif [ $MIGRATIONS_SAME_BRANCH_EXISTS -eq "1" ]; then MIGRATIONS_BRANCH="$CURRENT_BRANCH"; else MIGRATIONS_BRANCH=$DEFAULT_MIGRATIONS_BRANCH; fi;
+    - echo "Migrations Branch - $MIGRATIONS_BRANCH"
+    - cp composer-live.json composer.json
+    - cp composer-live.lock composer.lock
+    - composer require --no-update rxmg/rxplatform-migrations "rxmg/rxplatform-migrations:dev-$MIGRATIONS_BRANCH"
+    - composer update --no-scripts --no-install rxmg/rxplatform-migrations
+
+  artifacts:
+    name: composer
+    paths:
+      - composer.json
+      - composer.lock
+    expire_in: 1 hour
+
+.composer-install:
+  rules:
+    - when: never
+
+  before_script:
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+
+check:coding-standards:
+  extends: .composer-install
+
+  stage: pull request
+
+  needs: [composer-setup]
+
+  rules:
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+
+  image: $TESTER_IMAGE_NAME
+
+  script:
+    - vendor/bin/phpcs --standard=PSR12 --report=junit --report-file=junit.xml --basepath=. app config routes tests
+
+  artifacts:
+    reports:
+      junit: junit.xml
+    when: always
+    expire_in: 1 week
+
+test:all:
+  extends: .composer-install
+
+  needs: [composer-setup]
+
+  stage: test
+
+  rules:
+    - if: $CI_MERGE_REQUEST_IID && $IS_DUMMY_PULL_REQUEST != "true"
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  image: $TESTER_IMAGE_NAME
+
+  variables:
+    MYSQL_ROOT_PASSWORD: password
+    INFLUXDB_DB: rxplatform
+    DD_API_KEY: $DATADOG_API_KEY
+    DATADOG_API_KEY: $DATADOG_API_KEY
+    DD_INSIDE_CI: "true"
+    DD_HOSTNAME: "none"
+    DD_AGENT_HOST: "datadog-agent"
+    DD_ENV: ci
+
+  services:
+    - name: $MYSQL_IMAGE_NAME
+      alias: mysql
+    - name: redislabs/rebloom
+      alias: redis
+    - name: influxdb:1.8
+      alias: influxdb
+    - name: $MONGO_IMAGE_NAME
+      alias: mongo
+    - name: gcr.io/datadoghq/agent:latest
+
+  script:
+    - cp .env.ci .env
+    - php artisan key:generate
+    - php artisan jwt:secret
+    - echo -e "$UNIT_TEST_CONFIG" >> "$UNIT_TEST_FILE"
+    - attempts=0
+    - while ! php artisan migrate:install -q >/dev/null 2>&1; do attempts=$((attempts + 1)); if [ "$attempts" -ge 20 ]; then echo "Cannot connect to DB, giving up after one last try."; php artisan migrate:install -q >/dev/null 2>&1; fi; echo "Waiting for DB connection"; sleep 0.5; done
+    - php artisan test --without-tty --testsuite=Procedural --log-junit reports/junit/procedural.xml --coverage-php coverage/cov/procedural.cov --coverage-filter app
+    - php artisan test --without-tty --parallel --processes=4 --testsuite=Parallel --order-by=random --log-junit reports/junit/parallel.xml --coverage-php coverage/cov/parallel.cov
+    - composer require laravel/telescope
+    - vendor/bin/phpcov merge --clover coverage/clover/clover.xml --html coverage/html --cobertura coverage/cobertura/cobertura.xml coverage/cov
+    - vendor/bin/coverage-check coverage/clover/clover.xml "$CODE_COVERAGE_PERCENT"
+
+  after_script:
+    - PATH_REPLACEMENT=$(echo "$CI_PROJECT_DIR/" | sed 's/\//\\\//g')
+    - sed -i "s/$PATH_REPLACEMENT//g" reports/junit/parallel.xml || true
+    - sed -i "s/$PATH_REPLACEMENT//g" reports/junit/procedural.xml || true
+    - datadog-ci junit upload --service rxplatform-backend reports/junit || true
+
+  coverage: '/coverage is (\d*\.?\d*) %/'
+
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura/cobertura.xml
+      junit: reports/junit/*.xml
+    name: code-report
+    paths:
+      - coverage/html/
+      - reports/junit/junit.xml
+    when: always
+    expire_in: 1 week
+
+  retry: 1
+
+build:web:
+  stage: build
+
+  needs: [composer-setup]
+
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  image: google/cloud-sdk
+
+  script:
+    - cp deploy/Dockerfile-web Dockerfile
+    - gcloud builds submit --config .gitlab/cloudbuild.yaml --substitutions "_IMAGE_NAME=$WEB_IMAGE_NAME,COMMIT_SHA=$CI_COMMIT_SHA,_COMPOSER_AUTH=$COMPOSER_AUTH" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
+
+build:queue:
+  stage: build
+
+  needs: [composer-setup]
+
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  image: google/cloud-sdk
+
+  script:
+    - cp deploy/Dockerfile-queue Dockerfile
+    - gcloud builds submit --config .gitlab/cloudbuild.yaml --substitutions "_IMAGE_NAME=$QUEUE_IMAGE_NAME,COMMIT_SHA=$CI_COMMIT_SHA,_COMPOSER_AUTH=$COMPOSER_AUTH" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
+
+build:scheduler:
+  stage: build
+
+  needs: [composer-setup]
+
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  image: google/cloud-sdk
+
+  script:
+    - cp deploy/Dockerfile-scheduler Dockerfile
+    - gcloud builds submit --config .gitlab/cloudbuild.yaml --substitutions "_IMAGE_NAME=$SCHEDULER_IMAGE_NAME,COMMIT_SHA=$CI_COMMIT_SHA,_COMPOSER_AUTH=$COMPOSER_AUTH" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
+
+build:cleanup:
+  stage: build
+
+  needs: ["test:all", "build:web", "build:queue", "build:scheduler"]
+
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+      when: on_failure
+    - if: $CI_COMMIT_BRANCH == "develop"
+      when: on_failure
+    - if: $CI_COMMIT_BRANCH == "staging"
+      when: on_failure
+    - if: $CI_COMMIT_TAG
+      when: on_failure
+    - when: never
+
+  image: google/cloud-sdk
+
+  # If any of the build jobs didn't complete successfully, the image delete command will fail, so just ignore that and delete whatever is there
+  script:
+    - gcloud container images delete "$WEB_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
+    - gcloud container images delete "$QUEUE_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
+    - gcloud container images delete "$SCHEDULER_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
+
+migrate:all:
+  stage: migrate
+
+  needs: ["test:all", "build:web", "build:queue", "build:scheduler"]
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  image: "$WEB_IMAGE_NAME:$CI_COMMIT_SHA"
+
+  script:
+    - cd /var/www
+    - curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64
+    - chmod a+x cloud_sql_proxy
+    - mkdir /cloudsql
+    - ./cloud_sql_proxy -instances="rxmg-infrastructure:us-central1:$RXPLATFORM_ENVIRONMENT=tcp:3306" -dir /cloudsql &
+    - curl -o gcloud.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-365.0.1-linux-x86_64.tar.gz
+    - tar -xf gcloud.tar.gz
+    - apt update
+    - apt install -y python3
+    - ./google-cloud-sdk/bin/gcloud secrets versions access latest --secret "backend-$RXPLATFORM_ENVIRONMENT-env" > .env
+    - source .env
+    - export REDIS_HOST=${REDIS_HOST/internal.}
+    - export REDIS_CACHE_HOST=${REDIS_CACHE_HOST/internal.}
+    - export DB_HOST=127.0.0.1
+    - export DATASTORE_HOST=127.0.0.1
+    - php artisan route:cache
+    - php artisan config:cache
+    - php artisan event:cache
+    - php artisan migrate --force
+    - php artisan db:seed --force RXMG\\Database\\Seeders\\DatabaseSeeder
+    - rm -rf cloud_sql_proxy
+
+.review_environment:
+  stage: deploy
+
+  needs: ["build:web", "build:queue", "build:scheduler"]
+
+  rules:
+    - when: never
+
+  image: $REVIEW_ENVIRONMENT_IMAGE_NAME
+
+  resource_group: review/$CI_COMMIT_REF_SLUG
+
+  variables:
+    TERRAFORM_REPO_NAME: terraform-configs
+    TERRAFORM_REPO_PATH: "$TERRAFORM_REPO_NAME/rxplatform/development/dynamic"
+    DEFAULT_BACKEND_BRANCH: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    DEFAULT_FRONTEND_BRANCH: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    DEFAULT_INCOMING_BRANCH: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    url: https://api-$CI_COMMIT_REF_SLUG.rxmg.app
+
+  before_script:
+    - mkdir ~/.ssh
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - git clone --depth 1 git@github.com:RXMG/$TERRAFORM_REPO_NAME.git
+    - cd "$TERRAFORM_REPO_PATH"
+    - terraform init
+    - terraform workspace new $CI_COMMIT_REF_SLUG || terraform workspace select $CI_COMMIT_REF_SLUG
+
+  allow_failure: true
+
+review_environment:redeploy:
+  stage: deploy
+
+  needs: ["build:web", "build:queue", "build:scheduler"]
+
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+
+  image: $REVIEW_ENVIRONMENT_IMAGE_NAME
+
+  script:
+    - echo "Redeploying"
+
+  after_script:
+    ## installing GKE auth plugin
+    - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+    - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05 AA16FCBCA621E701
+    - apt-get update && apt-get install -y apt-utils google-cloud-sdk-gke-gcloud-auth-plugin
+    - gcloud container clusters get-credentials "$CLUSTER_NAME" --zone "$CLUSTER_LOCATION" --project "$PROJECT_ID"
+    - kubectl rollout restart deployment -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-backend-web-deployment" || true
+    - kubectl rollout restart deployment -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-backend-queue-deployment" || true
+    - kubectl rollout restart deployment -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-backend-scheduler-deployment" || true
+    - kubectl rollout restart deployment -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-intake-web-deployment" || true
+    - kubectl rollout restart deployment -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-intake-queue-deployment" || true
+    - kubectl rollout restart deployment -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-intake-scheduler-deployment" || true
+    - kubectl rollout restart deployment -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-frontend-web-deployment" || true
+    - kubectl get job -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-backend-migrations-job" -o json | jq 'del(.spec.selector)' | jq 'del(.spec.template.metadata.labels)' | kubectl replace --force -f - || true
+    - kubectl get job -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-intake-migrations-job" -o json | jq 'del(.spec.selector)' | jq 'del(.spec.template.metadata.labels)' | kubectl replace --force -f - || true
+    - kubectl get job -n "$CI_COMMIT_REF_SLUG" "$CI_COMMIT_REF_SLUG-backend-run-seeders-job" -o json | jq 'del(.spec.selector)' | jq 'del(.spec.template.metadata.labels)' | kubectl replace --force -f - || true
+
+  allow_failure: true
+
+review_environment:build:
+  extends: [review_environment:redeploy, .review_environment]
+
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+      when: manual
+
+  environment:
+    on_stop: review_environment:destroy
+    auto_stop_in: 2 weeks
+
+  script:
+    - BACKEND_SAME_BRANCH_EXISTS=$(git ls-remote --heads "https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_NAMESPACE/rxplatform-backend.git" "$CURRENT_BRANCH" | wc -l)
+    - FRONTEND_SAME_BRANCH_EXISTS=$(git ls-remote --heads "https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_NAMESPACE/rxplatform-frontend.git" "$CURRENT_BRANCH" | wc -l)
+    - INCOMING_SAME_BRANCH_EXISTS=$(git ls-remote --heads "https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_NAMESPACE/rxplatform-incoming.git" "$CURRENT_BRANCH" | wc -l)
+    - if [ ! -z "$BACKEND_BRANCH" ]; then echo "Using set variable for backend"; elif [ $BACKEND_SAME_BRANCH_EXISTS -eq "1" ]; then BACKEND_BRANCH="$CURRENT_BRANCH"; else BACKEND_BRANCH=$DEFAULT_BACKEND_BRANCH; fi;
+    - if [ ! -z "$FRONTEND_BRANCH" ]; then echo "Using set variable for frontend"; elif [ $FRONTEND_SAME_BRANCH_EXISTS -eq "1" ]; then FRONTEND_BRANCH="$CURRENT_BRANCH"; else FRONTEND_BRANCH=$DEFAULT_FRONTEND_BRANCH; fi;
+    - if [ ! -z "$INCOMING_BRANCH" ]; then echo "Using set variable for incoming"; elif [ $INCOMING_SAME_BRANCH_EXISTS -eq "1" ]; then INCOMING_BRANCH="$CURRENT_BRANCH"; else INCOMING_BRANCH=$DEFAULT_INCOMING_BRANCH; fi;
+    - echo "Backend Branch - $BACKEND_BRANCH"
+    - echo "Frontend Branch - $FRONTEND_BRANCH"
+    - echo "Incoming Branch - $INCOMING_BRANCH"
+    - terraform apply -auto-approve --var-file "$TERRAFORM_VARIABLES_FILE" -var "backend_branch=$BACKEND_BRANCH" -var "frontend_branch=$FRONTEND_BRANCH" -var "intake_branch=$INCOMING_BRANCH"
+
+review_environment:destroy:
+  extends: .review_environment
+
+  rules:
+    - if: $USE_PULL_REQUEST_ENVIRONMENT
+      when: manual
+
+  environment:
+    action: stop
+
+  script:
+    - terraform destroy -auto-approve --var-file "$TERRAFORM_VARIABLES_FILE"
+    - gcloud container images delete "$WEB_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
+    - gcloud container images delete "$QUEUE_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
+    - gcloud container images delete "$SCHEDULER_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
+
+.deploy:
+  stage: deploy
+
+  needs: ["migrate:all"]
+
+  rules:
+    - when: never
+
+  image: google/cloud-sdk
+
+  environment:
+    url: $RXPLATFORM_DEPLOYMENT_URL
+
+  before_script:
+    - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+    - gcloud container clusters get-credentials "$CLUSTER_NAME" --zone "$CLUSTER_LOCATION" --project "$PROJECT_ID"
+
+.deploy:web:
+  extends: .deploy
+
+  rules:
+    - when: never
+
+  resource_group: $RXPLATFORM_ENVIRONMENT/web
+
+  environment:
+    name: $RXPLATFORM_ENVIRONMENT/web
+
+  script:
+    - kubectl set image -n "$RXPLATFORM_ENVIRONMENT" "deployment/$RXPLATFORM_ENVIRONMENT-backend-web-deployment" "$RXPLATFORM_ENVIRONMENT-backend-web-container"="$WEB_IMAGE_NAME:$CI_COMMIT_SHA"
+
+.deploy:queue:
+  extends: .deploy
+
+  rules:
+    - when: never
+
+  resource_group: $RXPLATFORM_ENVIRONMENT/queue
+
+  environment:
+    name: $RXPLATFORM_ENVIRONMENT/queue
+
+  script:
+    - kubectl set image -n "$RXPLATFORM_ENVIRONMENT" "deployment/$RXPLATFORM_ENVIRONMENT-backend-queue-deployment" "$RXPLATFORM_ENVIRONMENT-backend-queue-container"="$QUEUE_IMAGE_NAME:$CI_COMMIT_SHA"
+
+.deploy:scheduler:
+  extends: .deploy
+
+  rules:
+    - when: never
+
+  resource_group: $RXPLATFORM_ENVIRONMENT/scheduler
+
+  environment:
+    name: $RXPLATFORM_ENVIRONMENT/scheduler
+
+  script:
+    - kubectl set image -n "$RXPLATFORM_ENVIRONMENT" "deployment/$RXPLATFORM_ENVIRONMENT-backend-scheduler-deployment" "$RXPLATFORM_ENVIRONMENT-backend-scheduler-container"="$SCHEDULER_IMAGE_NAME:$CI_COMMIT_SHA"
+
+deploy:web:qa:
+  extends: .deploy:web
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+
+  environment:
+    deployment_tier: testing
+
+deploy:queue:qa:
+  extends: .deploy:queue
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+
+  environment:
+    deployment_tier: testing
+
+deploy:scheduler:qa:
+  extends: .deploy:scheduler
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+
+  environment:
+    deployment_tier: testing
+
+deploy:web:staging:
+  extends: .deploy:web
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "staging"
+
+  environment:
+    deployment_tier: staging
+
+deploy:queue:staging:
+  extends: .deploy:queue
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "staging"
+
+  environment:
+    deployment_tier: staging
+
+deploy:scheduler:staging:
+  extends: .deploy:scheduler
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "staging"
+
+  environment:
+    deployment_tier: staging
+
+deploy:web:production:
+  extends: .deploy:web
+
+  rules:
+    - if: $CI_COMMIT_TAG
+
+  environment:
+    deployment_tier: production
+
+deploy:queue:production:
+  extends: .deploy:queue
+
+  rules:
+    - if: $CI_COMMIT_TAG
+
+  environment:
+    deployment_tier: production
+
+deploy:scheduler:production:
+  extends: .deploy:scheduler
+
+  rules:
+    - if: $CI_COMMIT_TAG
+
+  environment:
+    deployment_tier: production
+
+deploy:sentry:
+  stage: deploy
+
+  needs: ["migrate:all"]
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  image: getsentry/sentry-cli
+
+  resource_group: $RXPLATFORM_ENVIRONMENT/sentry
+
+  variables:
+    SENTRY_ORG: $SENTRY_ORGANIZATION_SLUG
+    SENTRY_PROJECT: $SENTRY_PROJECT
+    SENTRY_AUTH_TOKEN: $SENTRY_AUTH_TOKEN
+
+  script:
+    - sentry-cli releases new --finalize "$CI_COMMIT_SHA"
+    - sentry-cli releases set-commits --auto "$CI_COMMIT_SHA"
+    - sentry-cli releases deploys "$CI_COMMIT_SHA" new -e "$RXPLATFORM_ENVIRONMENT"
+
+.deploy:jira:
+  stage: deploy
+
+  needs: ["migrate:all"]
+
+  rules:
+    - when: never
+
+  image: $JIRA_IMAGE_NAME
+
+  variables:
+    GIT_DEPTH: "0"
+
+  before_script:
+    - |
+      if [ ! -z "$CI_COMMIT_TAG" ] ; then
+        last_tag=$(git tag --sort=-creatordate  | sed -n 2p)
+        echo "Last tag $last_tag"
+        last_tag_sha=$(git rev-list -n 1 "$last_tag")
+        echo "Last tag sha $last_tag_sha"
+        GIT_LOG_REVISION_RANGE="$last_tag_sha..$CI_COMMIT_SHA"
+      else
+        GIT_LOG_REVISION_RANGE="$CI_COMMIT_BEFORE_SHA..$CI_COMMIT_SHA"
+      fi
+      echo "Revision range $GIT_LOG_REVISION_RANGE"
+      issues=$(git log "$GIT_LOG_REVISION_RANGE" | grep -Eo '([A-Z]{3,}-)([0-9]+)' | sort -u)
+
+  allow_failure: true
+
+deploy:jira:transitions:
+  extends: .deploy:jira
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_TAG
+
+  resource_group: $RXPLATFORM_ENVIRONMENT/jira/transitions
+
+  script:
+    - |
+      transition_id=$(echo $JIRA_KEYS | jq -r --arg environment "$RXPLATFORM_ENVIRONMENT" '.[$environment].transitionId')
+      untouched_statuses=$(echo $JIRA_KEYS | jq -r --arg environment "$RXPLATFORM_ENVIRONMENT" '.[$environment].untouchedStatuses | @sh')
+
+      for issue in $issues; do
+        echo "Evaluating transitioning $issue";
+        issue_status=$(curl -u $JIRA_USER:$JIRA_TOKEN "$JIRA_BASE_API_URL/issue/$issue?fields=status" | jq -r '.fields.status.id // empty')
+        success=$?
+
+        if [ -n "$issue_status" ] && [ "$success" -eq 0 ] ; then
+          should_transition=true
+          for untouched_status in $untouched_statuses; do
+            if [ "$untouched_status" == "$issue_status" ]; then
+              should_transition=false
+              break
+            fi
+          done
+
+          if [ "$should_transition" = true ] ; then
+            echo "Transitioning $issue in status $issue_status";
+            curl -u $JIRA_USER:$JIRA_TOKEN -X POST --data "{\"transition\":{\"id\":"$transition_id"}}" -H "Content-Type: application/json" "$JIRA_BASE_API_URL/issue/$issue/transitions" || true
+            echo "Done transitioning $issue";
+          else
+            echo "Issue status is $issue_status, not transitioning"
+          fi
+        else
+          echo "Unable to get status of $issue"
+        fi
+      done
+
+deploy:jira:release:
+  extends: .deploy:jira
+
+  rules:
+    - if: $CI_COMMIT_TAG
+
+  resource_group: $RXPLATFORM_ENVIRONMENT/jira/release
+
+  script:
+    - |
+      release="$CI_COMMIT_TAG"
+      date=$(date '+%Y-%m-%d')
+      echo "Creating release $release for date $date"
+      curl -u $JIRA_USER:$JIRA_TOKEN -X POST --data "{\"name\": \"$release\", \"projectId\": \"$JIRA_PROJECT_ID\", \"released\":true, \"releaseDate\":\"$date\"}" -H "Content-Type: application/json" "$JIRA_BASE_API_URL/version" || true
+      for issue in $issues; do
+        echo "Adding $issue to release $CI_COMMIT_TAG";
+        curl -u $JIRA_USER:$JIRA_TOKEN -X PUT --data "{\"update\":{\"fixVersions\":[{\"add\":{\"name\": \"$release\"}}]}}" -H "Content-Type: application/json" "$JIRA_BASE_API_URL/issue/$issue" || true
+      done
+
+sync:production-to-staging:
+  stage: deploy
+
+  needs: []
+
+  rules:
+    - if: $SYNC_BRANCHES == "true"
+
+  image: alpine/git
+
+  variables:
+    GIT_DEPTH: 0
+
+  before_script:
+    - git config --global user.name "$GITLAB_USER_NAME"
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+
+  script:
+    - git checkout $SYNC_SOURCE_BRANCH
+    - git checkout $SYNC_TARGET_BRANCH
+    - git merge $SYNC_SOURCE_BRANCH --no-edit --squash
+    - if ! git diff-index --quiet HEAD --; then git commit -m "Squash merging $SYNC_SOURCE_BRANCH into $SYNC_TARGET_BRANCH."; git push "https://gitlab-ci-token:$GIT_WRITE_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git"; else echo "No changes to push."; fi;
