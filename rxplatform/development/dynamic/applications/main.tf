@@ -348,62 +348,79 @@ module "internal_ingress" {
   }
 }
 
-/*
+# provider "openvpn-cloud" {
+#   base_url      = var.openvpncloud.base_url
+#   client_id     = var.openvpncloud.credentials.client_id
+#   client_secret = var.openvpncloud.credentials.client_secret
+# }
 # Add Internal DNS Records For All Apps To VPN
 resource "openvpncloud_dns_record" "backend" {
+  provider = openvpn-cloud
   domain          = module.backend.host
-  description     = "RXPlatform ${var.environment} backend."
+  #description     = "RXPlatform ${var.environment} backend."
   ip_v4_addresses = [module.internal_ingress.ingress_ip]
 }
 
 resource "openvpncloud_dns_record" "frontend" {
+  provider = openvpn-cloud
   domain          = module.frontend.host
-  description     = "RXPlatform ${var.environment} frontend."
+  #description     = "RXPlatform ${var.environment} frontend."
   ip_v4_addresses = [module.internal_ingress.ingress_ip]
 }
 
 resource "openvpncloud_dns_record" "intake" {
+  provider = openvpn-cloud
   domain          = module.intake.host
-  description     = "RXPlatform ${var.environment} intake."
+  #description     = "RXPlatform ${var.environment} intake."
   ip_v4_addresses = [module.internal_ingress.ingress_ip]
 }
 
+
 # Add Routes For All Apps To VPN Network
 resource "openvpncloud_route" "backend" {
-  network_id  = var.openvpncloud_network_id
-  description = "RXPlatform ${var.environment} backend URL."
+  provider = openvpn-cloud
+  network_item_id  = var.openvpncloud_network_id
+  #description = "RXPlatform ${var.environment} backend URL."
   type        = local.openvpncloud_route_type
   value       = module.backend.host
 }
 
 resource "openvpncloud_route" "frontend" {
-  network_id  = var.openvpncloud_network_id
-  description = "RXPlatform ${var.environment} frontend URL."
+  provider = openvpn-cloud
+  network_item_id  = var.openvpncloud_network_id
+  #description = "RXPlatform ${var.environment} frontend URL."
   type        = local.openvpncloud_route_type
   value       = module.frontend.host
 }
 
 resource "openvpncloud_route" "intake" {
-  network_id  = var.openvpncloud_network_id
-  description = "RXPlatform ${var.environment} intake URL."
+  provider = openvpn-cloud
+  network_item_id  = var.openvpncloud_network_id
+  #description = "RXPlatform ${var.environment} intake URL."
   type        = local.openvpncloud_route_type
   value       = module.intake.host
 }
 
+
+
 # Add tracking domain
 resource "openvpncloud_dns_record" "tracking_domain" {
+  provider = openvpn-cloud
   domain          = local.tracking_domain
-  description     = "RXPlatform ${var.environment} tracking domain."
+ # description     = "RXPlatform ${var.environment} tracking domain."
   ip_v4_addresses = [module.internal_ingress.ingress_ip]
 }
 
+ #NOTE: failing to add route
 resource "openvpncloud_route" "tracking_domain" {
-  network_id  = var.openvpncloud_network_id
-  description = "RXPlatform ${var.environment} tracking domain URL."
+  provider = openvpn-cloud
+  network_item_id  = var.openvpncloud_network_id
+  #description = "RXPlatform ${var.environment} tracking domain URL."
   type        = local.openvpncloud_route_type
   value       = local.tracking_domain
 }
-*/
+
+
 
 module "external_webhook_ingress" {
   source      = "../../../../modules/networking/ingress"

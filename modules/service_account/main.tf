@@ -1,4 +1,5 @@
 locals {
+  secret_name                      = "${var.environment}-${var.app}-secret"
   service_account_name             = "${var.environment}-${var.app}-sa"
   service_account_display_name     = "${title(var.environment)} ${title(var.app)} Service Account"
   service_account_description      = "Service account used by the ${var.environment} ${var.app} app."
@@ -6,6 +7,7 @@ locals {
   kubernetes_service_account_name  = "${var.environment}-${var.app}-kubernetes-sa"
 
   timeout = "2m"
+  automount_service_account_token = true
 }
 
 resource "google_service_account" "app_service_account" {
@@ -42,7 +44,22 @@ resource "google_project_iam_member" "app_service_account_custom_roles" {
   }
 }
 
-resource "kubernetes_service_account" "app_kubernetes_service_account" {
+/*
+resource "kubernetes_secret_v1" "sa_secret" {
+  metadata {
+    name = local.secret_name
+    namespace = var.namespace
+    annotations = {
+      "kubernetes.io/service-account.name" = "${local.kubernetes_service_account_name}"
+      "kubernetes.io/service-account.namespace" = var.namespace
+    }
+  }
+
+  type = "kubernetes.io/service-account-token"
+  //depends_on = [kubernetes_service_account_v1.app_kubernetes_service_account]
+}
+
+resource "kubernetes_service_account_v1" "app_kubernetes_service_account" {
   metadata {
     name      = local.kubernetes_service_account_name
     namespace = var.namespace
@@ -54,10 +71,59 @@ resource "kubernetes_service_account" "app_kubernetes_service_account" {
       app         = var.app
     }
   }
+
+  automount_service_account_token = false
+
   timeouts {
     create = local.timeout
   }
+
 }
+*/
+resource "kubernetes_manifest" "main_secret" {
+  //count = local.kubernetes_service_account_name ? 0 : 1
+  manifest = {
+    "apiVersion" = "v1"
+    "kind"       = "Secret"
+    "metadata" = {
+      "name"      = local.secret_name
+      "namespace" = var.namespace
+      "annotations" = {
+        "kubernetes.io/service-account.name" = local.kubernetes_service_account_name
+        "kubernetes.io/service-account.namespace" = var.namespace
+      }
+    }
+
+    "type" = "kubernetes.io/service-account-token"
+  }
+}
+
+resource "kubernetes_manifest" "main_sa" {
+  //count = var.use_existing_k8s_sa ? 0 : 1
+  manifest = {
+    "apiVersion" = "v1"
+    "kind"       = "ServiceAccount"
+    "metadata" = {
+      "namespace" = var.namespace
+      "name"      = local.kubernetes_service_account_name
+      "annotations" = {
+        "iam.gke.io/gcp-service-account" = google_service_account.app_service_account.email
+      }
+    }
+
+    "automountServiceAccountToken" = local.automount_service_account_token
+    "secrets" = [
+      {
+        "name" = local.secret_name
+      }
+    ]
+  }
+  depends_on = [
+    kubernetes_manifest.main_secret
+  ]
+}
+
+
 
 resource "google_service_account_iam_binding" "app_service_account_limited_roles" {
   for_each = { for role in var.service_account_limited_roles : role.role => role }

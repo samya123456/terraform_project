@@ -36,7 +36,7 @@ provider "google" {
   region  = local.region
 }
 
-provider "openvpncloud" {
+provider "openvpn-cloud" {
   base_url      = var.openvpncloud.base_url
   client_id     = var.openvpncloud.credentials.client_id
   client_secret = var.openvpncloud.credentials.client_secret

@@ -154,12 +154,12 @@ resource "kubernetes_ingress_v1" "ingress" {
             content {
               path = path.value
               backend {
-		service {
-			name = rule.value["service_name"]	
-			port {
-				number = rule.value["service_port"]
-			}
-		}
+                service {
+                    name = rule.value["service_name"]
+                    port {
+                        number = rule.value["service_port"]
+                    }
+                }
             }
           }
         }
@@ -176,12 +176,12 @@ resource "kubernetes_ingress_v1" "ingress" {
             content {
               path = path.key
               backend {
-		service {
-			name = rule.value["service_name"]
-			port {
-				number = rule.value["service_port"]
-			}
-		}
+                service {
+                    name = rule.value["service_name"]
+                    port {
+                        number = rule.value["service_port"]
+                    }
+                }
               }
             }
           }

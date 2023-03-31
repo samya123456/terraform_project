@@ -15,6 +15,7 @@ locals {
     secret_name = module.application_kubernetes_secret.kubernetes_secret_name
     secret_key  = module.application_kubernetes_secret.kubernetes_secret_key
   }
+
 }
 
 module "service_account" {
