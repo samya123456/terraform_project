@@ -42,7 +42,7 @@ workflow:
       variables:
         IMAGE_ENVIRONMENT: dynamic/$CI_COMMIT_REF_SLUG
         RXPLATFORM_ENVIRONMENT: dynamic
-        RXPLATFORM_DEPLOYMENT_URL: https://api-$CI_COMMIT_REF_SLUG.rxmg.app
+        RXPLATFORM_DEPLOYMENT_URL: https://api-$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME.rxmg.app
         CLUSTER_LOCATION: us-central1
         CURRENT_BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
         UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
@@ -532,7 +532,8 @@ migrate:all:
     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
     - git clone --depth 1 git@github.com:RXMG/$TERRAFORM_REPO_NAME.git
     - cd "$TERRAFORM_REPO_PATH"
-    - terraform init
+    - git pull
+    - terraform init 
     - terraform workspace new $CI_COMMIT_REF_SLUG || terraform workspace select $CI_COMMIT_REF_SLUG
 
   allow_failure: true
@@ -607,6 +608,7 @@ review_environment:destroy:
     - gcloud container images delete "$WEB_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
     - gcloud container images delete "$QUEUE_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
     - gcloud container images delete "$SCHEDULER_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
+    - ./custom_script.sh -b "$CI_COMMIT_REF_SLUG"
 
 .deploy:
   stage: deploy

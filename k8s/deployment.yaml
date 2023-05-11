@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $APP_NAME
+spec:
+  selector:
+    matchLabels:
+      run: $APP_NAME
+  replicas: $REPLICA_COUNT
+  template:
+    metadata:
+      labels:
+        run: $APP_NAME
+    spec:
+      containers:
+      - name: $APP_NAME
+        image: $IMAGE_URL
+        ports:
+        - containerPort: $PORT

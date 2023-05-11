@@ -1,0 +1,16 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull ${_IMAGE_NAME}:latest || exit 0']
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+            'build',
+            '-t', '${_IMAGE_NAME}:latest',
+            '-t', '${_IMAGE_NAME}:${COMMIT_SHA}',
+            '--cache-from', '${_IMAGE_NAME}:latest',
+            '.'
+        ]
+images: ['${_IMAGE_NAME}:latest', '${_IMAGE_NAME}:${COMMIT_SHA}']
+timeout: 1800s
+options:
+  machineType: N1_HIGHCPU_32
