@@ -347,7 +347,7 @@ test:all:
 
   services:
     - name: $MYSQL_IMAGE_NAME
-      alias: mysql
+      alias: mysql  
     - name: redislabs/rebloom
       alias: redis
     - name: influxdb:1.8
