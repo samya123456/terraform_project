@@ -4,9 +4,12 @@ locals {
   location         = "us-central1"
   base_environment = "dynamic"
   branch_environment_mappings = {
-    develop    = "qa"
-    staging    = "staging"
-    production = "production"
+    develop             = "qa"
+    staging             = "staging"
+    production          = "production"
+    var.frontend_branch = var.frontend_branch
+    var.backend_branch  = var.backend_branch
+
   }
   image_environments = {
     backend  = lookup(local.branch_environment_mappings, lower(var.backend_branch), "${local.base_environment}/${lower(var.backend_branch)}")

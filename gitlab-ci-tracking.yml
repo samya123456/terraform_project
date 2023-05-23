@@ -1,14 +1,8 @@
 stages:
    - dependencies
-  # - security
-  # - compliance
-  # - pull request
-  # - test
    - build
-  # - migrate
-  # - scanning
    - deploy
-   - destroy
+  
 
 workflow:
   rules:
@@ -16,38 +10,26 @@ workflow:
       variables:
         IMAGE_ENVIRONMENT: qa
         RXPLATFORM_ENVIRONMENT: qa
-        RXPLATFORM_DEPLOYMENT_URL: https://api-qa.rxmg.app
         CLUSTER_LOCATION: us-central1
         CURRENT_BRANCH: develop
-        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
-        UNIT_TEST_CONFIG: "extension=pcov"
     - if: $CI_COMMIT_BRANCH == "staging" || ($CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "staging" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production")
       variables:
         IMAGE_ENVIRONMENT: staging
         RXPLATFORM_ENVIRONMENT: staging
-        RXPLATFORM_DEPLOYMENT_URL: https://api-staging.rxmg.app
         CLUSTER_LOCATION: us-central1
         CURRENT_BRANCH: staging
-        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
-        UNIT_TEST_CONFIG: "extension=pcov"
     - if: $CI_COMMIT_TAG
       variables:
         IMAGE_ENVIRONMENT: production
         RXPLATFORM_ENVIRONMENT: production
-        RXPLATFORM_DEPLOYMENT_URL: https://api.rxmg.app
         CLUSTER_LOCATION: us-central1
         CURRENT_BRANCH: production
-        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-        UNIT_TEST_CONFIG: "zend_extension=xdebug\\nxdebug.mode=coverage,gcstats\\nxdebug.start_with_request=yes"
     - if: $CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "develop" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "staging" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "production" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "staging" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production")
       variables:
         IMAGE_ENVIRONMENT: dynamic/$CI_COMMIT_REF_SLUG
         RXPLATFORM_ENVIRONMENT: dynamic
-        RXPLATFORM_DEPLOYMENT_URL: https://api-$CI_COMMIT_REF_SLUG.rxmg.app
         CLUSTER_LOCATION: us-central1
         CURRENT_BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
-        UNIT_TEST_FILE: /usr/local/etc/php/conf.d/docker-php-ext-pcov.ini
-        UNIT_TEST_CONFIG: "extension=pcov"
         USE_PULL_REQUEST_ENVIRONMENT: "true"
     - if: $CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "develop" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "staging" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "production"
       variables:
@@ -55,9 +37,6 @@ workflow:
     - if: $CI_COMMIT_BRANCH == "production"
       variables:
         SYNC_SOURCE_BRANCH: production
-        SYNC_TARGET_BRANCH: staging
-        SYNC_BRANCHES: "true"
-        DS_EXCLUDED_ANALYZERS: retire-js
 
 variables:
 
@@ -69,7 +48,6 @@ variables:
   MYSQL_IMAGE_NAME: $HELPER_IMAGES_PREFIX/mysql
   MONGO_IMAGE_NAME: $HELPER_IMAGES_PREFIX/mongo
   REVIEW_ENVIRONMENT_IMAGE_NAME: $HELPER_IMAGES_PREFIX/review-environment
-  JIRA_IMAGE_NAME: $HELPER_IMAGES_PREFIX/jira
   WEB_IMAGE_NAME: $IMAGES_PREFIX/$RXPLATFORM_ENVIRONMENT/tracking-service-web
   CLUSTER_NAME: $RXPLATFORM_ENVIRONMENT-cluster
 
@@ -102,20 +80,6 @@ dependencies:mysql:
   before_script:
     - cp deploy/helpers/mysql/mysql-init.sql mysql-init.sql
 
-dependencies:mongo:
-  extends: .dependencies
-
-  rules:
-    - when: manual
-
-  variables:
-    DEPENDENCY_DOCKERFILE: deploy/helpers/mongo/Dockerfile-mongo
-    DEPENDENCY_IMAGE: $MONGO_IMAGE_NAME
-
-  before_script:
-    - cp deploy/helpers/mongo/mongo-init.js mongo-init.js
-
-
 dependencies:review_environment:
   extends: .dependencies
 
@@ -128,93 +92,27 @@ dependencies:review_environment:
 
 build:web:
   stage: build
-  services:
-    - name: $MYSQL_IMAGE_NAME
-      alias: mysql
-    - name: redislabs/rebloom
-      alias: redis
-    - name: influxdb:1.8
-      alias: influxdb
-    - name: $MONGO_IMAGE_NAME
-      alias: mongo
-    - name: gcr.io/datadoghq/agent:latest
-
+  
   needs: []
 
-  # rules:
-  #   - if: $USE_PULL_REQUEST_ENVIRONMENT
-  #   - if: $CI_COMMIT_BRANCH == "rxp-2575"
-  #   - if: $CI_COMMIT_BRANCH == "staging"
-  #   - if: $CI_COMMIT_TAG
-
   image: google/cloud-sdk
+  allow_failure: true
 
   script:
-    - echo "CI_COMMIT_REF_SLUG = $CI_COMMIT_REF_SLUG"
     - cp docker/production/Dockerfile Dockerfile
-    - echo "$(ENV_VALUE_$IMAGE_ENVIRONMENT)"
-    - echo -e $ENV_VALUE > docker/production/.env
-    - ls -a docker/production 
+    - env_temp=ENV_VALUE_$IMAGE_ENVIRONMENT
+    - cat ${!env_temp}
+    - cat ${!env_temp} > docker/production/.env
     - cat docker/production/.env
+    - curl -v https://icanhazip.com
     - gcloud builds submit --config cloudbuild.yaml --substitutions "_IMAGE_NAME=$WEB_IMAGE_NAME,COMMIT_SHA=$CI_COMMIT_SHA,_COMPOSER_AUTH=$COMPOSER_AUTH" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
-
-.deploy:
-  stage: deploy
-
-  needs: []
-
-  rules:
-    - when: never
-
-  image: google/cloud-sdk
-
-  environment:
-    url: $RXPLATFORM_DEPLOYMENT_URL
-
-  before_script:
-    - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-    - gcloud container clusters get-credentials "$CLUSTER_NAME" --zone "$CLUSTER_LOCATION" --project "$PROJECT_ID"
-
-.deploy:web:
-  extends: .deploy
-
-  rules:
-    - when: never
-
-  resource_group: $RXPLATFORM_ENVIRONMENT/web
-
-  environment:
-    name: $RXPLATFORM_ENVIRONMENT/web
-
-  script:
-    - kubectl set image -n "$RXPLATFORM_ENVIRONMENT" "deployment/$RXPLATFORM_ENVIRONMENT-tracking-service-deployment" "$RXPLATFORM_ENVIRONMENT-tracking-service-container"="$WEB_IMAGE_NAME:$CI_COMMIT_SHA"
-
-deploy:web:dev:
-  stage: deploy
-  extends: [.deploy:web,review_environment:deploy]
-
-  # rules:
-  #   - if: $CI_COMMIT_BRANCH == "develop"
-
-  environment:
-    deployment_tier: development
-
 
 review_environment:deploy:
   stage: deploy
 
   needs: ["build:web"]
   image: $REVIEW_ENVIRONMENT_IMAGE_NAME
-  services:
-    - name: $MYSQL_IMAGE_NAME
-      alias: mysql
-    - name: redislabs/rebloom
-      alias: redis
-    - name: influxdb:1.8
-      alias: influxdb
-    - name: $MONGO_IMAGE_NAME
-      alias: mongo
-    - name: gcr.io/datadoghq/agent:latest
+  
 
   resource_group: $RXPLATFORM_ENVIRONMENT/web
 
@@ -225,7 +123,6 @@ review_environment:deploy:
     - echo "Deploying..."
   
   after_script:
-     ## installing GKE auth plugin
      - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
      - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05 AA16FCBCA621E701
      - apt-get remove -y google-cloud-cli-gke-gcloud-auth-plugin
@@ -233,44 +130,8 @@ review_environment:deploy:
      - apt-get update && apt-get install -y apt-utils google-cloud-sdk-gke-gcloud-auth-plugin gettext-base
      - gcloud container clusters get-credentials "$CLUSTER_NAME" --zone "$CLUSTER_LOCATION" --project "$PROJECT_ID"
      - kubectl get namespace | grep -q "^$RXPLATFORM_ENVIRONMENT " || kubectl create namespace $RXPLATFORM_ENVIRONMENT
-     - kubectl get namespaces 
      - export APP_NAME=tracking-service-web
-     - export REPLICA_COUNT=1
+     - export REPLICA_COUNT=2
      - export IMAGE_URL=$WEB_IMAGE_NAME:$CI_COMMIT_SHA
-     - export PORT=8085
+     - export PORT=8080
      - envsubst < deployment.yaml | kubectl apply -f - --namespace=$RXPLATFORM_ENVIRONMENT
-
-
-
-.destroy:
-  stage: destroy
-
-  needs: []
-
-  rules:
-    - when: never
-
-  image: google/cloud-sdk
-
-  script:
-    - echo "Running"
-
-  allow_failure: true
-
-review_environment:destroy:
-  extends: .destroy
-  image: $REVIEW_ENVIRONMENT_IMAGE_NAME
-
-  rules:
-     
-    - if:  $CI_COMMIT_BRANCH != "develop" && $CI_COMMIT_BRANCH != "staging" && $CI_COMMIT_BRANCH != "production" 
-  script:
-    - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-    - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05 AA16FCBCA621E701
-    - apt-get remove -y google-cloud-cli-gke-gcloud-auth-plugin
-    - apt-get clean
-    - apt-get update && apt-get install -y apt-utils google-cloud-sdk-gke-gcloud-auth-plugin gettext-base
-    - gcloud container clusters get-credentials "$CLUSTER_NAME" --zone "$CLUSTER_LOCATION" --project "$PROJECT_ID"
-    - kubectl get namespace | grep -q "^$CI_COMMIT_REF_SLUG " && kubectl delete all --all -n $CI_COMMIT_REF_SLUG 
-    - kubectl get namespace | grep -q "^$CI_COMMIT_REF_SLUG " && kubectl detele namespace $CI_COMMIT_REF_SLUG
-    #- kubectl get namespace | grep -q "^$CI_COMMIT_REF_SLUG " || kubectl detele namespace $CI_COMMIT_REF_SLUG
