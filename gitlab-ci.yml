@@ -609,6 +609,7 @@ review_environment:destroy:
     - gcloud container images delete "$QUEUE_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
     - gcloud container images delete "$SCHEDULER_IMAGE_NAME:$CI_COMMIT_SHA" --quiet || true
     - ./custom_script.sh -b "$CI_COMMIT_REF_SLUG"
+    - 
 
 .deploy:
   stage: deploy

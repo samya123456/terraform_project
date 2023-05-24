@@ -1,37 +1,56 @@
 #!/bin/bash
-# while getopts b: flag
-# do
-#   case ${flag} in
-#     b) branch_name=${OPTARG};;
-#     *) echo -e "Option ${flag} not supported" && exit 1;;
-#   esac
-# done
+while getopts a:b:c:d:e:f:g:h:i: flag
+do
+  case ${flag} in
+    a) ROUTEDESC=${OPTARG};;
+    b) ROUTEVAL=${OPTARG};;
+    c) DESCIPTION=${OPTARG};;
+    d) NAME=${OPTARG};;
+    e) CLIENTID=${OPTARG};;
+    f) CLIENTSECRET=${OPTARG};;
+    g) GRANTTYPE=${OPTARG};;
+    h) NETWORKITEMID=${OPTARG};;
+    i) NETWORKITEMTYPE=${OPTARG};;    
+    *) echo -e "Option ${flag} not supported" && exit 1;;
+  esac
+done
 
-appName=App
-routesdesc=nandy.com
-routeval=nandy.com
-description=App
-name=App
-client_id="punGyMf71UnfT74vwVLYkIPzncNry1ZC.samyanandy"
-client_secret="uUgvlvsydP15hiDnCnutK5UQNrVRZmCfjy5qrlIIA7onmEffTqEfIMaVwWUzppfN"
-grant_type="client_credentials"
-networkItemId="dd5eccd2-0a35-4c3f-8b68-594ce2020c8f"
-networkItemType="NETWORK"
-get_token_url="https://samyanandy.api.openvpn.com/api/beta/oauth/token?client_id=$client_id&client_secret=$client_secret&grant_type=client_credentials"
-create_application_url="https://samyanandy.api.openvpn.com/api/beta/services?networkItemId=$networkItemId&networkItemType=$networkItemType"
+
+echo "ROUTEDESC = $ROUTEDESC"
+echo "ROUTEVAL = $ROUTEVAL"
+echo "DESCIPTION = $DESCIPTION"
+echo "NAME = $NAME"
+echo "CLIENTID = $CLIENTID"
+echo "CLIENTSECRET = $CLIENTSECRET"
+echo "GRANTTYPE = $GRANTTYPE"
+echo "NETWORKITEMID = $NETWORKITEMID"
+echo "NETWORKITEMTYPE = $NETWORKITEMTYPE"
+
+# ROUTEDESC=nandy.com
+# ROUTEVAL=nandy.com
+# DESCIPTION=App
+# NAME=App
+# CLIENTID="punGyMf71UnfT74vwVLYkIPzncNry1ZC.samyanandy"
+# CLIENTSECRET="uUgvlvsydP15hiDnCnutK5UQNrVRZmCfjy5qrlIIA7onmEffTqEfIMaVwWUzppfN"
+# GRANTTYPE="client_credentials"
+# NETWORKITEMID="dd5eccd2-0a35-4c3f-8b68-594ce2020c8f"
+# NETWORKITEMTYPE="NETWORK"
+#### ./create_application.sh -a "nandy.com" -b "nandy.com" -c "App" -d "App" -e "punGyMf71UnfT74vwVLYkIPzncNry1ZC.samyanandy" -f "uUgvlvsydP15hiDnCnutK5UQNrVRZmCfjy5qrlIIA7onmEffTqEfIMaVwWUzppfN" -g "client_credentials" -h "dd5eccd2-0a35-4c3f-8b68-594ce2020c8f" -i "NETWORK" ###
+get_token_url="https://samyanandy.api.openvpn.com/api/beta/oauth/token?client_id=$CLIENTID&client_secret=$CLIENTSECRET&grant_type=$GRANTTYPE"
+create_application_url="https://samyanandy.api.openvpn.com/api/beta/services?networkItemId=$NETWORKITEMID&networkItemType=$NETWORKITEMTYPE"
 
 
 ##Edit the request json##
-contents="$(jq --arg description $description '.description = $description' json/createopenvpn_service_req.json)"
+contents="$(jq --arg DESCIPTION $DESCIPTION '.description = $DESCIPTION' json/createopenvpn_service_req.json)"
 echo -E "${contents}" > json/createopenvpn_service_req.json
 
-contents="$(jq --arg name $name '.name = $name' json/createopenvpn_service_req.json)"
+contents="$(jq --arg NAME $NAME '.name = $NAME' json/createopenvpn_service_req.json)"
 echo -E "${contents}" > json/createopenvpn_service_req.json
 
-contents="$(jq --arg routesdesc $routesdesc '.routes[].description = $routesdesc' json/createopenvpn_service_req.json)"
+contents="$(jq --arg ROUTEDESC $ROUTEDESC '.routes[].description = $ROUTEDESC' json/createopenvpn_service_req.json)"
 echo -E "${contents}" > json/createopenvpn_service_req.json
 
-contents="$(jq --arg routeval $routeval '.routes[].value =$routeval' json/createopenvpn_service_req.json)"
+contents="$(jq --arg ROUTEVAL $ROUTEVAL '.routes[].value =$ROUTEVAL' json/createopenvpn_service_req.json)"
 echo -E "${contents}" > json/createopenvpn_service_req.json
 
 
