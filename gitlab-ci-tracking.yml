@@ -30,13 +30,12 @@ workflow:
         RXPLATFORM_ENVIRONMENT: dynamic
         CLUSTER_LOCATION: us-central1
         CURRENT_BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
-        USE_PULL_REQUEST_ENVIRONMENT: "true"
     - if: $CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "develop" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "staging" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "production"
       variables:
         IS_DUMMY_PULL_REQUEST: "true"
     - if: $CI_COMMIT_BRANCH == "production"
       variables:
-        SYNC_SOURCE_BRANCH: production
+        SYNC_BRANCHES: "true"
 
 variables:
 
@@ -48,6 +47,7 @@ variables:
   MYSQL_IMAGE_NAME: $HELPER_IMAGES_PREFIX/mysql
   MONGO_IMAGE_NAME: $HELPER_IMAGES_PREFIX/mongo
   REVIEW_ENVIRONMENT_IMAGE_NAME: $HELPER_IMAGES_PREFIX/review-environment
+  #JIRA_IMAGE_NAME: $HELPER_IMAGES_PREFIX/jira
   WEB_IMAGE_NAME: $IMAGES_PREFIX/$RXPLATFORM_ENVIRONMENT/tracking-service-web
   CLUSTER_NAME: $RXPLATFORM_ENVIRONMENT-cluster
 
@@ -107,8 +107,30 @@ build:web:
     - curl -v https://icanhazip.com
     - gcloud builds submit --config cloudbuild.yaml --substitutions "_IMAGE_NAME=$WEB_IMAGE_NAME,COMMIT_SHA=$CI_COMMIT_SHA,_COMPOSER_AUTH=$COMPOSER_AUTH" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
 
-review_environment:deploy:
+
+
+.deploy:
   stage: deploy
+
+  rules:
+    - when: never
+
+  image: google/cloud-sdk
+
+  before_script:
+    - echo ".deploy Stage"
+    - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+    - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05 AA16FCBCA621E701
+    - apt-get remove -y google-cloud-cli-gke-gcloud-auth-plugin
+    - apt-get clean
+    - apt-get update && apt-get install -y apt-utils google-cloud-sdk-gke-gcloud-auth-plugin gettext-base
+    - gcloud container clusters get-credentials "$CLUSTER_NAME" --zone "$CLUSTER_LOCATION" --project "$PROJECT_ID"
+
+review_environment:web:
+  extends: .deploy
+
+  rules:
+    - when: manual
 
   needs: ["build:web"]
   image: $REVIEW_ENVIRONMENT_IMAGE_NAME
@@ -123,12 +145,6 @@ review_environment:deploy:
     - echo "Deploying..."
   
   after_script:
-     - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-     - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05 AA16FCBCA621E701
-     - apt-get remove -y google-cloud-cli-gke-gcloud-auth-plugin
-     - apt-get clean
-     - apt-get update && apt-get install -y apt-utils google-cloud-sdk-gke-gcloud-auth-plugin gettext-base
-     - gcloud container clusters get-credentials "$CLUSTER_NAME" --zone "$CLUSTER_LOCATION" --project "$PROJECT_ID"
      - kubectl get namespace | grep -q "^$RXPLATFORM_ENVIRONMENT " || kubectl create namespace $RXPLATFORM_ENVIRONMENT
      - export APP_NAME=tracking-service-web
      - export REPLICA_COUNT=2
