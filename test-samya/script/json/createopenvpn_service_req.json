@@ -1,16 +1,16 @@
 {
-  "config": {
-    "serviceTypes": [
-      "ANY"
-    ]
-  },
-  "description": "App",
-  "name": "App",
-  "routes": [
-    {
-      "description": "nandy.com",
-      "value": "nandy.com"
-    }
-  ],
-  "type": "SERVICE_DESTINATION"
+    "config": {
+        "serviceTypes": [
+            "ANY"
+        ]
+    },
+    "description": "",
+    "name": "",
+    "routes": [
+        {
+            "description": "",
+            "value": ""
+        }
+    ],
+    "type": "SERVICE_DESTINATION"
 }
