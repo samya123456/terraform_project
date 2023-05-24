@@ -36,6 +36,8 @@ echo "NETWORKITEMTYPE = $NETWORKITEMTYPE"
 # NETWORKITEMID="dd5eccd2-0a35-4c3f-8b68-594ce2020c8f"
 # NETWORKITEMTYPE="NETWORK"
 #### ./create_application.sh -a "nandy.com" -b "nandy.com" -c "App" -d "App" -e "punGyMf71UnfT74vwVLYkIPzncNry1ZC.samyanandy" -f "uUgvlvsydP15hiDnCnutK5UQNrVRZmCfjy5qrlIIA7onmEffTqEfIMaVwWUzppfN" -g "client_credentials" -h "dd5eccd2-0a35-4c3f-8b68-594ce2020c8f" -i "NETWORK" ###
+
+
 get_token_url="https://samyanandy.api.openvpn.com/api/beta/oauth/token?client_id=$CLIENTID&client_secret=$CLIENTSECRET&grant_type=$GRANTTYPE"
 create_application_url="https://samyanandy.api.openvpn.com/api/beta/services?networkItemId=$NETWORKITEMID&networkItemType=$NETWORKITEMTYPE"
 
