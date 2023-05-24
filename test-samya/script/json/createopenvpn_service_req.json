@@ -1,16 +1,16 @@
 {
-    "config": {
-        "serviceTypes": [
-            "ANY"
-        ]
-    },
-    "description": "app",
-    "name": "app",
-    "routes": [
-        {
-            "description": "xyz.com",
-            "value": "xyz.com"
-        }
-    ],
-    "type": "SERVICE_DESTINATION"
+  "config": {
+    "serviceTypes": [
+      "ANY"
+    ]
+  },
+  "description": "App1",
+  "name": "app",
+  "routes": [
+    {
+      "description": "samya.com",
+      "value": "samya.com"
+    }
+  ],
+  "type": "SERVICE_DESTINATION"
 }

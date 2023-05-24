@@ -7,13 +7,25 @@
 #   esac
 # done
 
+# appName=App
+# routesdesc
+# contents="$(jq '.description = "App1"' json/createopenvpn_service_req.json)"
+# echo -E "${contents}" > json/createopenvpn_service_req.json
 
-#echo "branch_name = $branch_name"
+# contents="$(jq '.routes[].description = "samya.com"' json/createopenvpn_service_req.json)"
+# echo -E "${contents}" > json/createopenvpn_service_req.json
+
+# contents="$(jq '.routes[].value = "samya.com"' json/createopenvpn_service_req.json)"
+# echo -E "${contents}" > json/createopenvpn_service_req.json
+
+
+# echo "branch_name = $branch_name"
 client_id="punGyMf71UnfT74vwVLYkIPzncNry1ZC.samyanandy"
 client_secret="uUgvlvsydP15hiDnCnutK5UQNrVRZmCfjy5qrlIIA7onmEffTqEfIMaVwWUzppfN"
 grant_type="client_credentials"
 networkItemId="dd5eccd2-0a35-4c3f-8b68-594ce2020c8f"
 networkItemType="NETWORK"
+
 get_token_url="https://samyanandy.api.openvpn.com/api/beta/oauth/token?client_id=$client_id&client_secret=$client_secret&grant_type=client_credentials"
 echo "get_token_url = $get_token_url"
 
