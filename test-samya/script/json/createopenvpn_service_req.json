@@ -1,16 +1,16 @@
 {
-    "config": {
-        "serviceTypes": [
-            "ANY"
-        ]
-    },
-    "description": "",
-    "name": "",
-    "routes": [
-        {
-            "description": "",
-            "value": ""
-        }
-    ],
-    "type": "SERVICE_DESTINATION"
+  "config": {
+    "serviceTypes": [
+      "ANY"
+    ]
+  },
+  "description": "RXP-1234.vnt.trckng.com",
+  "name": "RXP-1234.vnt.trckng.com",
+  "routes": [
+    {
+      "description": "RXP-1234.vnt.trckng.com",
+      "value": "RXP-1234.vnt.trckng.com"
+    }
+  ],
+  "type": "SERVICE_DESTINATION"
 }
