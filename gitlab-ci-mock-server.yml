@@ -6,41 +6,18 @@ stages:
 
 workflow:
   rules:
-    - if: $CI_COMMIT_BRANCH == "develop" || ($CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "develop" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "staging")
+    - if: $CI_COMMIT_BRANCH == "RXP-1000" || ($CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "develop" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "staging")
       variables:
         IMAGE_ENVIRONMENT: qa
         RXPLATFORM_ENVIRONMENT: qa
         CLUSTER_LOCATION: us-central1
         CURRENT_BRANCH: develop
-    - if: $CI_COMMIT_BRANCH == "staging" || ($CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "staging" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production")
-      variables:
-        IMAGE_ENVIRONMENT: staging
-        RXPLATFORM_ENVIRONMENT: staging
-        CLUSTER_LOCATION: us-central1
-        CURRENT_BRANCH: staging
-    - if: $CI_COMMIT_TAG
-      variables:
-        IMAGE_ENVIRONMENT: production
-        RXPLATFORM_ENVIRONMENT: production
-        CLUSTER_LOCATION: us-central1
-        CURRENT_BRANCH: production
-    - if: $CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "develop" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "staging" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME != "production" && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "staging" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production")
-      variables:
-        IMAGE_ENVIRONMENT: dynamic/$CI_COMMIT_REF_SLUG
-        RXPLATFORM_ENVIRONMENT: dynamic
-        CLUSTER_LOCATION: us-central1
-        CURRENT_BRANCH: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
-    - if: $CI_MERGE_REQUEST_IID && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "develop" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "staging" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != "production"
-      variables:
-        IS_DUMMY_PULL_REQUEST: "true"
-    - if: $CI_COMMIT_BRANCH == "production"
-      variables:
-        SYNC_BRANCHES: "true"
+
 
 variables:
-
+  PROJECT_ID:
   COMPOSER_AUTH: $COMPOSER_AUTH
-  IMAGES_PREFIX: gcr.io/$PROJECT_ID/rxplatform/tracking-service-web
+  IMAGES_PREFIX: gcr.io/$PROJECT_ID/rxplatform/mock-server
   HELPER_IMAGES_PREFIX: $IMAGES_PREFIX/helpers
   FULL_IMAGES_PREFIX: $IMAGES_PREFIX/$IMAGE_ENVIRONMENT
   TESTER_IMAGE_NAME: $HELPER_IMAGES_PREFIX/tester
@@ -48,7 +25,7 @@ variables:
   MONGO_IMAGE_NAME: $HELPER_IMAGES_PREFIX/mongo
   REVIEW_ENVIRONMENT_IMAGE_NAME: $HELPER_IMAGES_PREFIX/review-environment
   #JIRA_IMAGE_NAME: $HELPER_IMAGES_PREFIX/jira
-  WEB_IMAGE_NAME: $IMAGES_PREFIX/$RXPLATFORM_ENVIRONMENT/tracking-service-web
+  WEB_IMAGE_NAME: $IMAGES_PREFIX/$RXPLATFORM_ENVIRONMENT/mock-server
   CLUSTER_NAME: $RXPLATFORM_ENVIRONMENT-cluster
 
 .dependencies:
@@ -66,19 +43,6 @@ variables:
     - gcloud builds submit --config cloudbuild-generic.yaml --substitutions "_IMAGE_NAME=$DEPENDENCY_IMAGE,COMMIT_SHA=$CI_COMMIT_SHA" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
 
   allow_failure: true
-
-dependencies:mysql:
-  extends: .dependencies
-
-  rules:
-    - when: manual
-
-  variables:
-    DEPENDENCY_DOCKERFILE: deploy/helpers/mysql/Dockerfile-mysql
-    DEPENDENCY_IMAGE: $MYSQL_IMAGE_NAME
-
-  before_script:
-    - cp deploy/helpers/mysql/mysql-init.sql mysql-init.sql
 
 dependencies:review_environment:
   extends: .dependencies
@@ -99,12 +63,7 @@ build:web:
   allow_failure: true
 
   script:
-    - cp docker/production/Dockerfile Dockerfile
-    - env_temp=ENV_VALUE_$IMAGE_ENVIRONMENT
-    - cat ${!env_temp}
-    - cat ${!env_temp} > docker/production/.env
-    #- cat docker/production/.env
-    - curl -v https://icanhazip.com
+    - cp deploy/Dockerfile-web Dockerfile
     - gcloud builds submit --config cloudbuild.yaml --substitutions "_IMAGE_NAME=$WEB_IMAGE_NAME,COMMIT_SHA=$CI_COMMIT_SHA,_COMPOSER_AUTH=$COMPOSER_AUTH" --gcs-log-dir=gs://rxmg-infrastructure_cloudbuild/source
 
 
@@ -146,7 +105,7 @@ review_environment:web:
   
   after_script:
      - kubectl get namespace | grep -q "^$RXPLATFORM_ENVIRONMENT " || kubectl create namespace $RXPLATFORM_ENVIRONMENT
-     - export APP_NAME=tracking-service-web
+     - export APP_NAME=mock-server
      - export REPLICA_COUNT=2
      - export IMAGE_URL=$WEB_IMAGE_NAME:$CI_COMMIT_SHA
      - export PORT=8080
